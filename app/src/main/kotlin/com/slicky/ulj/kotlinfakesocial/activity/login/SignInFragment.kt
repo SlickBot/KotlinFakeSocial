@@ -1,5 +1,6 @@
 package com.slicky.ulj.kotlinfakesocial.activity.login
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -36,6 +37,7 @@ class SignInFragment : Fragment() {
         super.onCreate(savedInstanceState)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater.inflate(R.layout.signin_fragment, container, false)
 
@@ -71,7 +73,7 @@ class SignInFragment : Fragment() {
                     emailField.text.toString(),
                     passwordField.text.toString()).apply { execute() }
         } else {
-            shakeStage()
+            context.shake(emailField, passwordField)
         }
     }
 
@@ -84,10 +86,6 @@ class SignInFragment : Fragment() {
     internal fun failSignin(text: String, e: Exception?) {
         displayDialog(text + if (e != null) "\n" + e.localizedMessage else "")
         Log.wtf(TAG, text, e)
-        shakeStage()
-    }
-
-    private fun shakeStage() {
         context.shake(emailField, passwordField)
     }
 

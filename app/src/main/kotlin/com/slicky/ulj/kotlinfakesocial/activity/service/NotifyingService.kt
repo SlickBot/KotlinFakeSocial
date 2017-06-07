@@ -47,7 +47,7 @@ class NotifyingService : IntentService("NotifyingService") {
                 .setContentIntent(pendingIntent)
                 .setContentTitle(getString(R.string.app_name))
                 .setSubText("Time ran out!")
-                .setContentText("You should open Java Fake Social again!")
+                .setContentText("You should open Kotlin Fake Social again!")
                 .setAutoCancel(true)
                 .build()
 

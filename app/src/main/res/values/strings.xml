@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">Java Fake Social</string>
+    <string name="app_name">Kotlin Fake Social</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_activity_settings">Settings</string>
+    <string name="content">Content</string>
 </resources>

@@ -33,9 +33,8 @@ class CreatorActivity : BackableActivity() {
 
     @Suppress("UNUSED_PARAMETER")
     fun onNewContent(view: View) {
-        if (validate()) {
+        if (validate())
             task = CreatorTask(this, textField.text.toString()).apply { execute() }
-        }
     }
 
     private fun validate(): Boolean {

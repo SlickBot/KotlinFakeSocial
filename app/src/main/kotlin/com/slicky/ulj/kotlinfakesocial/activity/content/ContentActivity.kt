@@ -50,6 +50,9 @@ class ContentActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
         setContentView(R.layout.content_activity)
         setSupportActionBar(toolbar)
 
+        // Thanks Lollipop -> https://stackoverflow.com/a/29455956/6814029
+        title = "Content"
+
         navigationView.setNavigationItemSelectedListener(this)
 
         val toggle = ActionBarDrawerToggle(this, drawer, toolbar,
