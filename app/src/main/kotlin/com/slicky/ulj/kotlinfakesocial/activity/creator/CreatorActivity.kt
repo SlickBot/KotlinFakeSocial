@@ -8,11 +8,13 @@ import android.widget.EditText
 import com.slicky.ulj.kotlinfakesocial.R
 import com.slicky.ulj.kotlinfakesocial.activity.BackableActivity
 import com.slicky.ulj.kotlinfakesocial.findView
+import com.slicky.ulj.kotlinfakesocial.string
 
 /**
  * Created by SlickyPC on 30.5.2017
  */
 class CreatorActivity : BackableActivity() {
+
     companion object {
         private val TAG = CreatorActivity::class.java.canonicalName
     }
@@ -34,13 +36,13 @@ class CreatorActivity : BackableActivity() {
     @Suppress("UNUSED_PARAMETER")
     fun onNewContent(view: View) {
         if (validate())
-            task = CreatorTask(this, textField.text.toString()).apply { execute() }
+            task = CreatorTask(this, textField.string).apply { execute() }
     }
 
     private fun validate(): Boolean {
         textField.error = null
 
-        val text = textField.text.toString()
+        val text = textField.string
         if (text.length < 5) {
             textField.error = "Text is too short! (minimum is 5)"
             textField.requestFocus()

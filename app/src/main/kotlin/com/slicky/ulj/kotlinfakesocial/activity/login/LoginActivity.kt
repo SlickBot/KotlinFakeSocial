@@ -36,16 +36,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     @Suppress("UNUSED_PARAMETER")
-    fun onSignInClick(view: View) {
-        adapter.signinFragment.trySignin()
-    }
-
-    @Suppress("UNUSED_PARAMETER")
-    fun onSignUpClick(view: View) {
-        adapter.signupFragment.trySignup()
-    }
-
-    @Suppress("UNUSED_PARAMETER")
     fun onMoveToSignUpClick(view: View) {
         viewPager.currentItem = 1
     }

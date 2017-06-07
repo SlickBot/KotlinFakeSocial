@@ -10,12 +10,13 @@ import java.util.concurrent.TimeUnit
 /**
  * Created by SlickyPC on 20.5.2017
  */
-object DummyDBHandler : DBHandler {
-    private val lock = Any()
+object FakeDBHandler : DBHandler {
 
     private var person: Person? = null
     private var friendList: List<Person>? = null
     private var contentList: List<Content>? = null
+
+    private val lock = Any()
 
     var isSignedIn: Boolean = false
         private set
@@ -72,23 +73,24 @@ object DummyDBHandler : DBHandler {
     override fun getUser(): Person {
         if (person == null)
             queryData()
-        return person!!
+        return person ?: throw IOException("Could not receive User!")
     }
 
     override fun getFriends(): List<Person> {
         if (friendList == null)
             queryData()
-        return friendList ?: emptyList()
+        return friendList ?: throw IOException("Could not receive Friends!")
     }
 
     override fun getContent(): List<Content> {
         if (contentList == null)
             queryData()
-        return contentList ?: emptyList()
+        return contentList ?: throw IOException("Could not receive Content!")
     }
 
     @Throws(IOException::class)
     private fun queryData() {
+        // In case multiple calls happen.
         synchronized(lock) {
             // Find person candidates.
             val candidates = findCandidates()
@@ -103,10 +105,10 @@ object DummyDBHandler : DBHandler {
 
     @Throws(IOException::class)
     private fun findCandidates(): List<Person> {
-        // Query PersonQuery for new random persons.
+        // Blocking api request for new random persons.
         val query = ApiServices.personApi
                 .getPerson(50)
-                .execute().body() ?: throw IOException("Did not receive PersonQuery (is null)")
+                .execute().body()
 
         // Distinct received persons by image URL.
         val candidates = distinctByURL(query.results)
@@ -124,7 +126,7 @@ object DummyDBHandler : DBHandler {
 
         friendList?.let {
             for (i in 0..9) {
-                // Query ContentService for new Content text.
+                // Blocking api request for new Content text.
                 val query = ApiServices.contentApi
                         .getContent()
                         .execute().body() ?: throw IOException("Did not receive Content (is null)")

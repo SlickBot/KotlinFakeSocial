@@ -17,8 +17,9 @@ import java.util.concurrent.TimeUnit
  * Created by SlickyPC on 30.5.2017
  */
 class NotifyingService : IntentService("NotifyingService") {
+
     companion object {
-        private val NOTIFY_ID = 0xDEAD_BEEF.toInt()
+        private const val NOTIFY_ID = 0xDEAD_BEEF.toInt()
     }
 
     private lateinit var prefs: FakePreferences

@@ -1,7 +1,7 @@
 package com.slicky.ulj.kotlinfakesocial.activity.login
 
 import com.slicky.ulj.kotlinfakesocial.activity.ProgressDialogTask
-import com.slicky.ulj.kotlinfakesocial.db.DummyDBHandler
+import com.slicky.ulj.kotlinfakesocial.db.FakeDBHandler
 
 import java.io.IOException
 
@@ -16,9 +16,7 @@ internal class SignUpTask(private val fragment: SignUpFragment,
 ) : ProgressDialogTask<Boolean>(fragment.context, "Signing Up...") {
 
     @Throws(IOException::class)
-    override fun backgroundTask(): Boolean {
-        return DummyDBHandler.signup(first, last, email, password)
-    }
+    override fun backgroundTask() = FakeDBHandler.signup(first, last, email, password)
 
     override fun success(result: Boolean) {
         if (result)
@@ -27,7 +25,5 @@ internal class SignUpTask(private val fragment: SignUpFragment,
             fragment.failSignup("Could not create new account!", null)
     }
 
-    override fun fail(e: Exception) {
-        fragment.failSignup("Could not Sign Up!", e)
-    }
+    override fun fail(e: Exception) = fragment.failSignup("Could not Sign Up!", e)
 }

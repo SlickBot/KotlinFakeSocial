@@ -5,6 +5,7 @@ import android.util.Patterns
 import android.view.View
 import android.widget.CheckBox
 import com.slicky.ulj.kotlinfakesocial.R
+import com.slicky.ulj.kotlinfakesocial.string
 
 /**
  * Created by SlickyPC on 1.6.2017
@@ -25,6 +26,9 @@ internal class SignUpValidator(view: View) {
 
     private val legalCheckBox = view.findViewById(R.id.legal_checkbox) as CheckBox
 
+    val acceptedLegalNotice: Boolean
+        get() = legalCheckBox.isChecked
+
     fun validate(): Boolean {
         var errorField: View? = null
 
@@ -34,11 +38,11 @@ internal class SignUpValidator(view: View) {
         firstPasswordLayout.error = null
         secondPasswordLayout.error = null
 
-        val first = firstField?.text.toString()
-        val last = lastField?.text.toString()
-        val email = emailField?.text.toString()
-        val firstPassword = firstPasswordField?.text.toString()
-        val secondPassword = secondPasswordField?.text.toString()
+        val first = firstField.string
+        val last = lastField.string
+        val email = emailField.string
+        val firstPassword = firstPasswordField.string
+        val secondPassword = secondPasswordField.string
 
         if (first.length < 2) {
             firstLayout.error = "First name is too short! (min 2)"
@@ -93,9 +97,5 @@ internal class SignUpValidator(view: View) {
         }
 
         return true
-    }
-
-    fun acceptedLegalNotice(): Boolean {
-        return legalCheckBox.isChecked
     }
 }

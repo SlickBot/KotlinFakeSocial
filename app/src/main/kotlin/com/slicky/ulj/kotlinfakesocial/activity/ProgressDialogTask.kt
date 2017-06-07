@@ -40,7 +40,6 @@ abstract class ProgressDialogTask<T>(context: Context, message: String) {
                     }
                     return null
                 }
-
             }
 
             override fun onPostExecute(result: T) {

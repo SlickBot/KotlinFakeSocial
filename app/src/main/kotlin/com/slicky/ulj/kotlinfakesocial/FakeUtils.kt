@@ -3,13 +3,20 @@
 package com.slicky.ulj.kotlinfakesocial
 
 import android.app.Activity
+import android.app.Service
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.os.Bundle
+import android.os.Parcelable
 import android.os.Vibrator
 import android.text.format.DateFormat
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
+import android.widget.TextView
 import com.slicky.ulj.kotlinfakesocial.model.person.Person
+import java.io.Serializable
 import java.util.*
 
 /**
@@ -22,7 +29,7 @@ fun String.capitalizeAll() = split(" ").map(String::capitalize).joinToString(sep
 
 fun Person.fullName() = "${name.first.capitalizeAll()} ${name.last.capitalizeAll()}"
 
-fun Person.fullNameWithTitle() = "${name.title} ${fullName()}"
+fun Person.fullNameWithTitle() = "${name.title.capitalizeAll()} ${fullName()}"
 
 fun Person.info() = "${location.city.capitalizeAll()}, ${nat.codeToCountry()}"
 
@@ -50,6 +57,9 @@ fun View.shake(dur: Int = SHAKE_DURATION, count: Int = SHAKE_COUNT) {
     })
 }
 
+val TextView?.string: String
+    get() = this?.text?.toString() ?: ""
+
 @Suppress("UNCHECKED_CAST")
 inline fun <reified T : View> Activity.findView(id: Int) = lazy {
     findViewById(id)?.let {
@@ -58,4 +68,66 @@ inline fun <reified T : View> Activity.findView(id: Int) = lazy {
             else -> throw TypeCastException("Could not cast View to ${T::class}")
         }
     } ?: throw IllegalArgumentException("Could not find ${T::class} with id = $id")
+}
+
+/**
+ * Inspired (copied) from Anko org.jetbrains.anko.internals
+ */
+inline fun <reified T : Activity> Activity.startActivity(vararg params: Pair<String, Any?>) {
+    val i = Intent(this, T::class.java).applyParams(params)
+    startActivity(i)
+}
+
+inline fun <reified T : Service> Activity.startService(vararg params: Pair<String, Any?>) {
+    val i = Intent(this, T::class.java).applyParams(params)
+    startService(i)
+}
+
+fun Intent.applyParams(params: Array<out Pair<String, Any?>>): Intent {
+    params.forEach { (first, value) ->
+        when (value) {
+            null -> putExtra(first, null as Serializable?)
+            is Int -> putExtra(first, value)
+            is Long -> putExtra(first, value)
+            is CharSequence -> putExtra(first, value)
+            is String -> putExtra(first, value)
+            is Float -> putExtra(first, value)
+            is Double -> putExtra(first, value)
+            is Char -> putExtra(first, value)
+            is Short -> putExtra(first, value)
+            is Boolean -> putExtra(first, value)
+            is Serializable -> putExtra(first, value)
+            is Bundle -> putExtra(first, value)
+            is Parcelable -> putExtra(first, value)
+            is Array<*> -> when {
+                value.isArrayOf<CharSequence>() -> putExtra(first, value)
+                value.isArrayOf<String>() -> putExtra(first, value)
+                value.isArrayOf<Parcelable>() -> putExtra(first, value)
+                else -> throw IllegalArgumentException("Wrong type!")
+            }
+            is IntArray -> putExtra(first, value)
+            is LongArray -> putExtra(first, value)
+            is FloatArray -> putExtra(first, value)
+            is DoubleArray -> putExtra(first, value)
+            is CharArray -> putExtra(first, value)
+            is ShortArray -> putExtra(first, value)
+            is BooleanArray -> putExtra(first, value)
+            else -> throw IllegalArgumentException("Wrong type!")
+        }
+    }
+    return this
+}
+
+fun Activity.startShareActivity(subject: String, text: String) {
+    val intent = Intent(Intent.ACTION_SEND).apply {
+        type = "text/plain"
+        putExtra(Intent.EXTRA_SUBJECT, subject)
+        putExtra(Intent.EXTRA_TEXT, text)
+    }
+    startActivity(Intent.createChooser(intent, "Share via"))
+}
+
+fun Activity.startBrowseActivity(url: String) {
+    val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+    startActivity(browserIntent)
 }

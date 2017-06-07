@@ -1,6 +1,5 @@
 package com.slicky.ulj.kotlinfakesocial.activity.friends
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
@@ -9,21 +8,22 @@ import android.util.Log
 import com.slicky.ulj.kotlinfakesocial.R
 import com.slicky.ulj.kotlinfakesocial.activity.BackableActivity
 import com.slicky.ulj.kotlinfakesocial.activity.login.LoginActivity
-import com.slicky.ulj.kotlinfakesocial.activity.profile.ProfileActivity
-import com.slicky.ulj.kotlinfakesocial.db.DummyDBHandler
+import com.slicky.ulj.kotlinfakesocial.db.FakeDBHandler
 import com.slicky.ulj.kotlinfakesocial.findView
-import com.slicky.ulj.kotlinfakesocial.model.person.Person
+import com.slicky.ulj.kotlinfakesocial.startActivity
 
 /**
  * Created by SlickyPC on 22.5.2017
  */
 class FriendsActivity : BackableActivity() {
+
     companion object {
         private val TAG = FriendsActivity::class.java.canonicalName
     }
 
     private val recycler by findView<RecyclerView>(R.id.friends_recycler_view)
-    private lateinit var friendsAdapter: FriendsAdapter
+
+    internal lateinit var friendsAdapter: FriendsAdapter
 
     private var friendsTask: FriendsTask? = null
 
@@ -47,24 +47,14 @@ class FriendsActivity : BackableActivity() {
         friendsTask?.cancel()
     }
 
-    internal fun openFriendProfile(friend: Person) {
-        val intent = ProfileActivity.getFriendIntent(this, friend)
-        startActivity(intent)
-    }
-
-    internal fun setFriends(friends: List<Person>) {
-        friendsAdapter.setFriends(friends)
-    }
-
     internal fun onFail(text: String, e: Exception?) {
         displaySignOutDialog(text + if (e != null) "\n" + e.localizedMessage else "")
         Log.wtf(TAG, text, e)
     }
 
     private fun logOut() {
-        DummyDBHandler.signout()
-        val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
+        FakeDBHandler.signout()
+        startActivity<LoginActivity>()
         finish()
     }
 

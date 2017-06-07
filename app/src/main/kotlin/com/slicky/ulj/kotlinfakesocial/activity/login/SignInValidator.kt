@@ -4,6 +4,7 @@ import android.support.design.widget.TextInputLayout
 import android.util.Patterns
 import android.view.View
 import com.slicky.ulj.kotlinfakesocial.R
+import com.slicky.ulj.kotlinfakesocial.string
 
 /**
  * Created by SlickyPC on 1.6.2017
@@ -22,8 +23,8 @@ internal class SignInValidator(view: View) {
 
         var errorField: View? = null
 
-        val email = emailField?.text.toString()
-        val password = passwordField?.text.toString()
+        val email = emailField.string
+        val password = passwordField.string
 
         if (email.length < 5) {
             emailLayout.error = "Email is too short! (min 5)"
@@ -47,7 +48,6 @@ internal class SignInValidator(view: View) {
             if (errorField == null)
                 errorField = passwordLayout
         }
-
 
         if (errorField != null) {
             errorField.requestFocus()

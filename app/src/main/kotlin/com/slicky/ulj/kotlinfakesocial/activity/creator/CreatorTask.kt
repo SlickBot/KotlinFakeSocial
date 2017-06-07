@@ -1,7 +1,7 @@
 package com.slicky.ulj.kotlinfakesocial.activity.creator
 
 import com.slicky.ulj.kotlinfakesocial.activity.ProgressDialogTask
-import com.slicky.ulj.kotlinfakesocial.db.DummyDBHandler
+import com.slicky.ulj.kotlinfakesocial.db.FakeDBHandler
 
 import java.io.IOException
 
@@ -14,7 +14,7 @@ internal class CreatorTask(private val activity: CreatorActivity,
 
     @Throws(IOException::class)
     override fun backgroundTask(): Boolean {
-        return DummyDBHandler.uploadContent(content)
+        return FakeDBHandler.uploadContent(content)
     }
 
     override fun success(result: Boolean) {

@@ -96,7 +96,6 @@
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:background="@drawable/button_background_solid"
-                android:onClick="onSignInClick"
 
                 android:layout_marginTop="24dp"
                 android:layout_marginStart="24dp"

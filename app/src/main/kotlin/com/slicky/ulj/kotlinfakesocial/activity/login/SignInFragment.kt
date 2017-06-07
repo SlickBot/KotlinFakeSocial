@@ -1,7 +1,6 @@
 package com.slicky.ulj.kotlinfakesocial.activity.login
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
@@ -10,15 +9,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo.IME_ACTION_DONE
+import android.widget.Button
 import android.widget.EditText
 import com.slicky.ulj.kotlinfakesocial.R
 import com.slicky.ulj.kotlinfakesocial.activity.content.ContentActivity
 import com.slicky.ulj.kotlinfakesocial.shake
+import com.slicky.ulj.kotlinfakesocial.startActivity
+import com.slicky.ulj.kotlinfakesocial.string
 
 /**
  * Created by SlickyPC on 18.5.2017
  */
 class SignInFragment : Fragment() {
+
     companion object {
         private val TAG = SignInFragment::class.java.canonicalName
 
@@ -30,7 +33,6 @@ class SignInFragment : Fragment() {
     private lateinit var emailField: EditText
     private lateinit var passwordField: EditText
 
-    private lateinit var validator: SignInValidator
     private var task: SignInTask? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,27 +41,29 @@ class SignInFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val view = inflater.inflate(R.layout.signin_fragment, container, false)
+        return inflater.inflate(R.layout.signin_fragment, container, false).apply {
 
-        validator = SignInValidator(view)
+            emailField = findViewById(R.id.signin_email) as EditText
+            passwordField = findViewById(R.id.signin_password) as EditText
 
-        emailField = view.findViewById(R.id.signin_email) as EditText
-        passwordField = view.findViewById(R.id.signin_password) as EditText
-
-        passwordField.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == IME_ACTION_DONE) {
-                trySignin()
-                true
-            } else {
-                false
+            passwordField.setOnEditorActionListener { _, actionId, _ ->
+                if (actionId == IME_ACTION_DONE) {
+                    trySignin()
+                    true
+                } else {
+                    false
+                }
             }
+
+            val signInButton = findViewById(R.id.signin_signin_button) as Button
+            signInButton.setOnClickListener {
+                trySignin()
+            }
+
+            // TODO: This should be changed.
+            emailField.setText("change@me.pls")
+            passwordField.setText("password")
         }
-
-        // TODO: This should be changed.
-        emailField.setText("change@me.pls")
-        passwordField.setText("password")
-
-        return view
     }
 
     override fun onDetach() {
@@ -68,25 +72,22 @@ class SignInFragment : Fragment() {
     }
 
     internal fun trySignin() {
-        if (validator.validate()) {
-            task = SignInTask(this,
-                    emailField.text.toString(),
-                    passwordField.text.toString()).apply { execute() }
-        } else {
+        val validator = SignInValidator(view ?: return)
+        if (validator.validate())
+            task = SignInTask(this, emailField.string, passwordField.string).apply { execute() }
+        else
             context.shake(emailField, passwordField)
-        }
     }
 
     internal fun successSignin() {
-        val intent = Intent(context, ContentActivity::class.java)
-        startActivity(intent)
+        activity.startActivity<ContentActivity>()
         activity.finish()
     }
 
     internal fun failSignin(text: String, e: Exception?) {
         displayDialog(text + if (e != null) "\n" + e.localizedMessage else "")
-        Log.wtf(TAG, text, e)
         context.shake(emailField, passwordField)
+        Log.wtf(TAG, text, e)
     }
 
     private fun displayDialog(text: String) {

@@ -1,6 +1,5 @@
 package com.slicky.ulj.kotlinfakesocial.activity.content
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
@@ -20,12 +19,11 @@ import com.slicky.ulj.kotlinfakesocial.activity.about.AboutActivity
 import com.slicky.ulj.kotlinfakesocial.activity.creator.CreatorActivity
 import com.slicky.ulj.kotlinfakesocial.activity.friends.FriendsActivity
 import com.slicky.ulj.kotlinfakesocial.activity.login.LoginActivity
-import com.slicky.ulj.kotlinfakesocial.activity.profile.ProfileActivity
 import com.slicky.ulj.kotlinfakesocial.activity.settings.SettingsActivity
-import com.slicky.ulj.kotlinfakesocial.db.DummyDBHandler
+import com.slicky.ulj.kotlinfakesocial.db.FakeDBHandler
 import com.slicky.ulj.kotlinfakesocial.findView
-import com.slicky.ulj.kotlinfakesocial.model.content.Content
-import com.slicky.ulj.kotlinfakesocial.model.person.Person
+import com.slicky.ulj.kotlinfakesocial.startActivity
+import com.slicky.ulj.kotlinfakesocial.startShareActivity
 
 class ContentActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     companion object {
@@ -37,13 +35,13 @@ class ContentActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
     private val toolbar by findView<Toolbar>(R.id.toolbar)
     private val recycler by findView<RecyclerView>(R.id.content_recycler_view)
 
-    private lateinit var contentAdapter: ContentAdapter
+    internal lateinit var contentAdapter: ContentAdapter
 
     private var contentTask: ContentTask? = null
     private var userTask: ProgressDialogTask<*>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        if (!DummyDBHandler.isSignedIn)
+        if (!FakeDBHandler.isSignedIn)
             logOut()
 
         super.onCreate(savedInstanceState)
@@ -86,11 +84,11 @@ class ContentActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.nav_profile -> startUserTask()
-            R.id.nav_friends -> openFriends()
-            R.id.nav_settings -> openSettings()
-            R.id.nav_about -> openAbout()
-            R.id.nav_share -> share()
+            R.id.nav_profile -> userTask = UserTask(this).apply { execute() }
+            R.id.nav_friends -> startActivity<FriendsActivity>()
+            R.id.nav_settings -> startActivity<SettingsActivity>()
+            R.id.nav_about -> startActivity<AboutActivity>()
+            R.id.nav_share -> startShareActivity("Fakest Social Network!", "This app is really FAKE!")
             R.id.nav_logout -> logOut()
         }
         drawer.closeDrawers()
@@ -104,63 +102,15 @@ class ContentActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.action_create) {
-            openCreator()
+            startActivity<CreatorActivity>()
             return true
         }
         return super.onOptionsItemSelected(item)
     }
 
-    private fun startUserTask() {
-        userTask = UserTask(this).apply { execute() }
-    }
-
-    private fun openCreator() {
-        val intent = Intent(this, CreatorActivity::class.java)
-        startActivity(intent)
-    }
-
-    internal fun openOwnerProfile(person: Person) {
-        val intent = ProfileActivity.getOwnerIntent(this, person)
-        startActivity(intent)
-    }
-
-    internal fun openFriendProfile(person: Person) {
-        val intent = ProfileActivity.getFriendIntent(this, person)
-        startActivity(intent)
-    }
-
-    private fun openFriends() {
-        val intent = Intent(this, FriendsActivity::class.java)
-        startActivity(intent)
-    }
-
-    private fun openSettings() {
-        val intent = Intent(this, SettingsActivity::class.java)
-        startActivity(intent)
-    }
-
-    private fun openAbout() {
-        val intent = Intent(this, AboutActivity::class.java)
-        startActivity(intent)
-    }
-
-    private fun share() {
-        val intent = Intent(Intent.ACTION_SEND).apply {
-            type = "text/plain"
-            putExtra(Intent.EXTRA_SUBJECT, "Fakest Social Network!")
-            putExtra(Intent.EXTRA_TEXT, "This app is really FAKE!")
-        }
-        startActivity(Intent.createChooser(intent, "Share via"))
-    }
-
-    fun setContent(contents: List<Content>) {
-        contentAdapter.setContent(contents)
-    }
-
     private fun logOut() {
-        DummyDBHandler.signout()
-        val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
+        startActivity<LoginActivity>()
+        FakeDBHandler.signout()
         finish()
     }
 

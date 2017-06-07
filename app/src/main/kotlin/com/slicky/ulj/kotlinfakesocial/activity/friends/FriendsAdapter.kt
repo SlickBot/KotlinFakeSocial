@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.slicky.ulj.kotlinfakesocial.R
+import com.slicky.ulj.kotlinfakesocial.activity.profile.ProfileActivity.Companion.startFriendProfile
 import com.slicky.ulj.kotlinfakesocial.fullName
 import com.slicky.ulj.kotlinfakesocial.info
 import com.slicky.ulj.kotlinfakesocial.model.person.Person
@@ -32,7 +33,7 @@ internal class FriendsAdapter(private val activity: FriendsActivity,
         view.setOnClickListener {
             val itemPosition = recycler.getChildLayoutPosition(view)
             val friend = friendsList[itemPosition]
-            activity.openFriendProfile(friend)
+            activity.startFriendProfile(friend)
         }
 
         return FriendsViewHolder(view)
@@ -40,7 +41,6 @@ internal class FriendsAdapter(private val activity: FriendsActivity,
 
     override fun onBindViewHolder(holder: FriendsViewHolder, position: Int) {
         val friend = friendsList[position]
-
         with(holder) {
             friendName.text = friend.fullName()
             friendInfo.text = friend.info()
