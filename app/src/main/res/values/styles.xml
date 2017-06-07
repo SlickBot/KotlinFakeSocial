@@ -1,0 +1,67 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+
+        <!-- Base color scheme. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:windowBackground">@color/colorBackground</item>
+        <item name="android:colorBackground">@color/colorBackground</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textColorPrimary">@color/colorText</item>
+        <item name="android:textColorHint">@color/colorTextDark</item>
+        <item name="android:listDivider">@color/colorPrimaryDark</item>
+    </style>
+
+    <!-- Theme for Activities without ActionBar. -->
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!-- AppBarLayout theme. -->
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <!-- Toolbar theme. -->
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <!-- Text appearance for TextInputLayout. -->
+    <style name="TextAppearance.App.TextInputLayout" parent="@android:style/TextAppearance">
+        <item name="counterTextAppearance">@style/TextAppearance.App.TextInputLayout.Counter</item>
+        <item name="errorTextAppearance">@style/TextAppearance.App.TextInputLayout.Error</item>
+        <item name="counterOverflowTextAppearance">@style/TextAppearance.App.TextInputLayout.Error</item>
+        <item name="passwordToggleTint">@color/colorTextDark</item>
+    </style>
+
+    <!-- Error theme for TextInputLayout. -->
+    <style name="TextAppearance.App.TextInputLayout.Error" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/colorError</item>
+    </style>
+
+    <!-- Counter theme for TextInputLayout. -->
+    <style name="TextAppearance.App.TextInputLayout.Counter" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/colorTextDark</item>
+        <item name="android:textSize">@dimen/textInputLayoutCounterSize</item>
+    </style>
+
+    <!-- Text appearance for EditText. -->
+    <style name="EditText">
+        <!-- Color of bottom line when EditText is focused. -->
+        <item name="backgroundTint">@color/colorAccent</item>
+    </style>
+
+    <!-- Dialog theme, mainly used for AlertDialog. -->
+    <style name="AppTheme.Dialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:textColor">@color/colorTextDark</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:textColorPrimary">@color/colorText</item>
+    </style>
+
+    <!-- Theme used for Switches used in Settings. -->
+    <style name="AppTheme.Switch" parent="Theme.AppCompat">
+        <item name="colorControlActivated">@color/colorSuccess</item>
+    </style>
+</resources>
