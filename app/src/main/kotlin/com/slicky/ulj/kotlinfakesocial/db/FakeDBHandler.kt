@@ -12,11 +12,12 @@ import java.util.concurrent.TimeUnit
  */
 object FakeDBHandler : DBHandler {
 
+    private val lock = Any()
+    private val random = Random()
+
     private var person: Person? = null
     private var friendList: List<Person>? = null
     private var contentList: List<Content>? = null
-
-    private val lock = Any()
 
     var isSignedIn: Boolean = false
         private set
@@ -58,7 +59,7 @@ object FakeDBHandler : DBHandler {
             // Simulate network work.
             simulateWork()
             // Create new Content.
-            val newContent = Content(it, content, System.currentTimeMillis())
+            val newContent = Content(random.nextLong(), it, content, System.currentTimeMillis())
             // Create new Content list with new Content in top.
             contentList = ArrayList<Content>().apply {
                 add(newContent)
@@ -85,6 +86,11 @@ object FakeDBHandler : DBHandler {
         if (contentList == null)
             queryData()
         return contentList ?: throw IOException("Could not receive Content!")
+    }
+
+    fun removeContent(content: Content) {
+        simulateWork()
+        contentList = contentList?.minus(content)
     }
 
     @Throws(IOException::class)
@@ -120,7 +126,6 @@ object FakeDBHandler : DBHandler {
 
     @Throws(IOException::class)
     private fun generateContent() = mutableListOf<Content>().also { list ->
-        val random = Random()
 
         friendList?.let { friends ->
             repeat(10) {
@@ -143,7 +148,7 @@ object FakeDBHandler : DBHandler {
                 val timePassed = random.nextInt(1000 * 60 * 60 * 24)
 
                 // Create new Content and add it to list.
-                val content = Content(randy, query, lastPostTime - timePassed)
+                val content = Content(random.nextLong(), randy, query, lastPostTime - timePassed)
                 list.add(content)
             }
         }

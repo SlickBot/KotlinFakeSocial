@@ -7,7 +7,7 @@ import com.slicky.ulj.kotlinfakesocial.model.person.Person
 /**
  * Created by SlickyPC on 17.5.2017
  */
-data class Content(val owner: Person, val text: String, val postedAt: Long) : Parcelable {
+data class Content(val id: Long, val owner: Person, val text: String, val postedAt: Long) : Parcelable {
 
     companion object {
         @JvmField val CREATOR: Parcelable.Creator<Content> = object : Parcelable.Creator<Content> {
@@ -17,6 +17,7 @@ data class Content(val owner: Person, val text: String, val postedAt: Long) : Pa
     }
 
     constructor(source: Parcel) : this(
+            source.readLong(),
             source.readParcelable<Person>(Person::class.java.classLoader),
             source.readString(),
             source.readLong()
@@ -25,6 +26,7 @@ data class Content(val owner: Person, val text: String, val postedAt: Long) : Pa
     override fun describeContents() = 0
 
     override fun writeToParcel(dest: Parcel, flags: Int) {
+        dest.writeLong(id)
         dest.writeParcelable(owner, 0)
         dest.writeString(text)
         dest.writeLong(postedAt)

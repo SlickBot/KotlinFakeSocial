@@ -36,6 +36,11 @@
         </activity>
 
         <activity
+                android:name=".activity.detail.DetailActivity"
+                android:label="Detail"
+                android:parentActivityName=".activity.content.ContentActivity"/>
+
+        <activity
                 android:name=".activity.profile.ProfileActivity"
                 android:label="Profile"
                 android:parentActivityName=".activity.content.ContentActivity"/>

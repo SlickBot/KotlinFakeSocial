@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.slicky.ulj.kotlinfakesocial.R
-import com.slicky.ulj.kotlinfakesocial.activity.profile.ProfileActivity.Companion.startFriendProfile
+import com.slicky.ulj.kotlinfakesocial.activity.detail.DetailActivity.Companion.startDetail
 import com.slicky.ulj.kotlinfakesocial.formattedWithTime
 import com.slicky.ulj.kotlinfakesocial.fullName
 import com.slicky.ulj.kotlinfakesocial.model.content.Content
@@ -34,7 +34,7 @@ internal class ContentAdapter(private val activity: ContentActivity,
         view.setOnClickListener {
             val itemPosition = recycler.getChildLayoutPosition(view)
             val content = contentList[itemPosition]
-            activity.startFriendProfile(content.owner)
+            activity.startDetail(content)
         }
 
         return ContentViewHolder(view)
