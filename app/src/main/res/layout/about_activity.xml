@@ -14,7 +14,7 @@
                 android:id="@+id/about_app_logo"
                 android:layout_width="160dp"
                 android:layout_height="160dp"
-                app:srcCompat="@drawable/logo_transparent"
+                app:srcCompat="@drawable/logo"
                 android:contentDescription="App Logo"
                 android:scaleType="fitCenter"
 

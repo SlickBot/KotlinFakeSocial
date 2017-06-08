@@ -13,9 +13,7 @@ internal class CreatorTask(private val activity: CreatorActivity,
     : ProgressDialogTask<Boolean>(activity, "Uploading Content...") {
 
     @Throws(IOException::class)
-    override fun backgroundTask(): Boolean {
-        return FakeDBHandler.uploadContent(content)
-    }
+    override fun backgroundTask() = FakeDBHandler.uploadContent(content)
 
     override fun success(result: Boolean) {
         if (result)
@@ -24,8 +22,6 @@ internal class CreatorTask(private val activity: CreatorActivity,
             activity.onCreatingFail("Error occurred while uploading Content to Server!")
     }
 
-    override fun fail(e: Exception) {
-        activity.onCreatingFail("Error occurred while uploading Content to Database!", e)
-    }
+    override fun fail(e: Exception) = activity.onCreatingFail("Error occurred while uploading Content to Database!", e)
 }
 

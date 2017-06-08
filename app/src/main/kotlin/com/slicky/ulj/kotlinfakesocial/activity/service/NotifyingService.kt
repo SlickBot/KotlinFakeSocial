@@ -46,7 +46,7 @@ class NotifyingService : IntentService("NotifyingService") {
         val pendingIntent = PendingIntent.getActivity(applicationContext, 0, callbackIntent, 0)
 
         val notification = NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.logo_transparent)
+                .setSmallIcon(R.drawable.logo)
                 .setContentIntent(pendingIntent)
                 .setContentTitle(getString(R.string.app_name))
                 .setSubText("Time ran out!")

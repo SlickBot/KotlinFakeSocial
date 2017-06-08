@@ -2,7 +2,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <rotate
-                android:drawable="@drawable/logo_transparent"
+                android:drawable="@drawable/logo"
                 android:pivotX="50%"
                 android:pivotY="50%"
                 android:fromDegrees="0"

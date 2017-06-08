@@ -70,7 +70,7 @@ class SignUpFragment : Fragment() {
                 displayDialog("You have to accept legal notice!")
             }
         } else {
-            context.shake(firstField, lastField, emailField, firstPasswordField, secondPasswordField)
+            shakeStage()
         }
     }
 
@@ -81,8 +81,12 @@ class SignUpFragment : Fragment() {
 
     internal fun failSignup(text: String, e: Exception?) {
         displayDialog(text + if (e != null) "\n" + e.localizedMessage else "")
-        context.shake(firstField, lastField, emailField, firstPasswordField, secondPasswordField)
+        shakeStage()
         Log.wtf(TAG, text, e)
+    }
+
+    private fun shakeStage() {
+        context.shake(firstField, lastField, emailField, firstPasswordField, secondPasswordField)
     }
 
     private fun displayDialog(text: String) {

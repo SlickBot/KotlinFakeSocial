@@ -49,6 +49,7 @@ internal class ContentAdapter(private val activity: ContentActivity,
             ownerName.text = owner.fullName()
             postedAt.text = date.formattedWithTime()
             content.text = newContent.text
+
             Picasso.with(activity)
                     .load(owner.picture.medium)
                     .placeholder(R.drawable.ic_user)

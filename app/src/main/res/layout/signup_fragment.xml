@@ -14,7 +14,7 @@
                 android:id="@+id/icon"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/logo_transparent"
+                android:src="@drawable/logo"
                 android:contentDescription="Logo"
 
                 android:layout_marginTop="24dp"
