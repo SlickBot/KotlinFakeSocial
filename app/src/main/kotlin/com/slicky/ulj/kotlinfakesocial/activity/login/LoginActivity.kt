@@ -17,13 +17,11 @@ class LoginActivity : AppCompatActivity() {
     private val viewPager by findView<ViewPager>(R.id.container)
     private val pageIndicator by findView<PageIndicatorView>(R.id.indicator)
 
-    private lateinit var adapter: LoginAdapter
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_activity)
 
-        adapter = LoginAdapter(supportFragmentManager)
+        val adapter = LoginAdapter(supportFragmentManager)
         viewPager.adapter = adapter
         pageIndicator.setViewPager(viewPager)
     }

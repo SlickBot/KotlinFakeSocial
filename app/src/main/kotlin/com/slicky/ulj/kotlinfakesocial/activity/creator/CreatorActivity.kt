@@ -35,25 +35,9 @@ class CreatorActivity : BackableActivity() {
 
     @Suppress("UNUSED_PARAMETER")
     fun onNewContent(view: View) {
-        if (validate())
+        val validator = CreatorValidator(this)
+        if (validator.validate())
             task = CreatorTask(this, textField.string).apply { execute() }
-    }
-
-    private fun validate(): Boolean {
-        textField.error = null
-
-        val text = textField.string
-        if (text.length < 5) {
-            textField.error = "Text is too short! (minimum is 5)"
-            textField.requestFocus()
-            return false
-        }
-        if (text.length > 256) {
-            textField.error = "Text is too long! (minimum is 256)"
-            textField.requestFocus()
-            return false
-        }
-        return true
     }
 
     internal fun onCreatingSuccess() {

@@ -16,8 +16,8 @@ import java.util.*
  * Created by SlickyPC on 19.5.2017
  */
 internal class ContentAdapter(private val activity: ContentActivity,
-                              private val recycler: RecyclerView
-) : RecyclerView.Adapter<ContentViewHolder>() {
+                              private val recycler: RecyclerView)
+    : RecyclerView.Adapter<ContentViewHolder>() {
 
     private val contentList = mutableListOf<Content>()
 

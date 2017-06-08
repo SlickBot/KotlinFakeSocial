@@ -1,7 +1,6 @@
 package com.slicky.ulj.kotlinfakesocial.activity.settings
 
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.Switch
@@ -15,56 +14,54 @@ import com.slicky.ulj.kotlinfakesocial.activity.service.NotifyingService
  */
 class SettingsActivity : BackableActivity() {
 
+    private lateinit var prefs: FakePreferences
+
     private val onOffSwitch by findView<Switch>(R.id.settings_on_off_switch)
     private val durationField by findView<EditText>(R.id.settings_duration_field)
     private val durationText by findView<TextView>(R.id.settings_duration_text)
     private val randomSwitch by findView<Switch>(R.id.settings_random_switch)
 
-    private lateinit var prefs: FakePreferences
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings_activity)
 
-        prefs = FakePreferences(this)
+        prefs = FakePreferences(this).apply {
+            onOffSwitch.setOnCheckedChangeListener { _, isChecked ->
+                isNotifyOn = isChecked
+                updateFields()
+                if (isChecked)
+                    startService<NotifyingService>()
+            }
 
-        onOffSwitch.setOnCheckedChangeListener { _, isChecked ->
-            prefs.isNotifyOn = isChecked
-            updateFields()
-            if (isChecked)
-                startService<NotifyingService>()
-        }
+            durationField.setOnEditorActionListener { _, actionId, _ ->
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    notifyDuration = durationField.string.toInt()
+                    updateFields()
+                }
+                return@setOnEditorActionListener false
+            }
 
-        durationField.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                prefs.notifyDuration = durationField.string.toInt()
+            randomSwitch.setOnCheckedChangeListener { _, isChecked ->
+                isNotifyRandom = isChecked
                 updateFields()
             }
-            false
-        }
-
-        randomSwitch.setOnCheckedChangeListener { _, isChecked ->
-            prefs.isNotifyRandom = isChecked
-            updateFields()
         }
 
         updateFields()
     }
 
     private fun updateFields() {
-        val onOff = prefs.isNotifyOn
-        val duration = prefs.notifyDuration
-        val random = prefs.isNotifyRandom
+        with(prefs) {
+            onOffSwitch.isChecked = isNotifyOn
+            durationField.setText(notifyDuration.toString())
+            randomSwitch.isChecked = isNotifyRandom
 
-        onOffSwitch.isChecked = onOff
-        durationField.setText(duration.toString())
-        randomSwitch.isChecked = random
+            val colorId = if (isNotifyRandom) R.color.colorTextDark else R.color.colorText
+            val color = color(colorId)
 
-        val colorId = if (random) R.color.colorTextDark else R.color.colorText
-        val color = ContextCompat.getColor(this, colorId)
-
-        durationText.setTextColor(color)
-        durationField.setTextColor(color)
-        durationField.isEnabled = !random
+            durationText.setTextColor(color)
+            durationField.setTextColor(color)
+            durationField.isEnabled = !isNotifyRandom
+        }
     }
 }

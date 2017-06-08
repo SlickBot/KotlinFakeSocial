@@ -9,8 +9,8 @@ import java.io.IOException
 /**
  * Created by SlickyPC on 23.5.2017
  */
-internal class UserTask(private val activity: ContentActivity
-) : ProgressDialogTask<Person>(activity, "Loading User...") {
+internal class UserTask(private val activity: ContentActivity)
+    : ProgressDialogTask<Person>(activity, "Loading User...") {
 
     @Throws(IOException::class)
     override fun backgroundTask() = FakeDBHandler.getUser()

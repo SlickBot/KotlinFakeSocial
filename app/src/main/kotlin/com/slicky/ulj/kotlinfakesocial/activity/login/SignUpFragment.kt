@@ -36,13 +36,9 @@ class SignUpFragment : Fragment() {
 
     private var task: SignUpTask? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.signup_fragment, container, false).apply {
 
+        return inflater.inflate(R.layout.signup_fragment, container, false).apply {
             firstField = findViewById(R.id.signup_first_name) as EditText
             lastField = findViewById(R.id.signup_last_name) as EditText
             emailField = findViewById(R.id.signup_email) as EditText

@@ -9,8 +9,8 @@ import android.support.v4.app.FragmentPagerAdapter
  */
 internal class LoginAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
-    val signinFragment = SignInFragment.newInstance()
-    val signupFragment = SignUpFragment.newInstance()
+    private val signinFragment = SignInFragment.newInstance()
+    private val signupFragment = SignUpFragment.newInstance()
 
     override fun getItem(position: Int): Fragment {
         when (position) {

@@ -10,8 +10,8 @@ import java.io.IOException
  */
 internal class SignInTask(private val fragment: SignInFragment,
                           private val email: String,
-                          private val password: String
-) : ProgressDialogTask<Boolean>(fragment.context, "Signing In...") {
+                          private val password: String)
+    : ProgressDialogTask<Boolean>(fragment.context, "Signing In...") {
 
     @Throws(IOException::class)
     override fun backgroundTask(): Boolean = FakeDBHandler.signin(email, password)

@@ -26,6 +26,7 @@ import com.slicky.ulj.kotlinfakesocial.startActivity
 import com.slicky.ulj.kotlinfakesocial.startShareActivity
 
 class ContentActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
     companion object {
         private val TAG = ContentActivity::class.java.canonicalName
     }

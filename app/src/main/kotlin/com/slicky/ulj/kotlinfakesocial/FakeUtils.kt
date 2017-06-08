@@ -6,10 +6,14 @@ import android.app.Activity
 import android.app.Service
 import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
 import android.os.Vibrator
+import android.support.design.widget.TextInputLayout
+import android.support.v4.content.ContextCompat
+import android.support.v7.widget.AppCompatDrawableManager
 import android.text.format.DateFormat
 import android.view.View
 import android.view.animation.Animation
@@ -60,7 +64,14 @@ fun View.shake(dur: Int = SHAKE_DURATION, count: Int = SHAKE_COUNT) {
 val TextView?.string: String
     get() = this?.text?.toString() ?: ""
 
-@Suppress("UNCHECKED_CAST")
+val TextInputLayout.text: String
+    get() = editText.string
+
+fun Activity.color(id: Int) = ContextCompat.getColor(this, id)
+
+// Context.getDrawable requires min API 21
+fun Context.drawable(id: Int): Drawable = AppCompatDrawableManager.get().getDrawable(this, id)
+
 inline fun <reified T : View> Activity.findView(id: Int) = lazy {
     findViewById(id)?.let {
         when (it) {
@@ -128,6 +139,6 @@ fun Activity.startShareActivity(subject: String, text: String) {
 }
 
 fun Activity.startBrowseActivity(url: String) {
-    val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-    startActivity(browserIntent)
+    val browseIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+    startActivity(browseIntent)
 }

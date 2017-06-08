@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.AsyncTask
 import android.support.v7.widget.AppCompatDrawableManager
 import com.slicky.ulj.kotlinfakesocial.R
+import com.slicky.ulj.kotlinfakesocial.drawable
 
 import java.io.IOException
 
@@ -13,43 +14,37 @@ import java.io.IOException
  */
 abstract class ProgressDialogTask<T>(context: Context, message: String) {
 
-    private val progress: ProgressDialog
-    private val task: AsyncTask<Void, Void, T>
+    private val progress = ProgressDialog(context, R.style.AppTheme_Dialog).apply {
+        setMessage(message)
+        isIndeterminate = true
+        setIndeterminateDrawable(context.drawable(R.drawable.loading_drawable))
+        setCancelable(false)
+    }
 
-    init {
-        val logo = AppCompatDrawableManager.get().getDrawable(context, R.drawable.loading_drawable)
-        progress = ProgressDialog(context, R.style.AppTheme_Dialog).apply {
-            setMessage(message)
-            isIndeterminate = true
-            setIndeterminateDrawable(logo)
-            setCancelable(false)
+    private val task = object : AsyncTask<Void, Void, T>() {
+        override fun onPreExecute() {
+            progress.show()
         }
 
-        task = object : AsyncTask<Void, Void, T>() {
-            override fun onPreExecute() {
-                progress.show()
-            }
-
-            override fun doInBackground(vararg voids: Void): T? {
-                try {
-                    return backgroundTask()
-                } catch (e: Exception) {
-                    if (!isCancelled()) {
-                        fail(e)
-                        cancel(true)
-                    }
-                    return null
+        override fun doInBackground(vararg voids: Void): T? {
+            try {
+                return backgroundTask()
+            } catch (e: Exception) {
+                if (!isCancelled) {
+                    fail(e)
+                    cancel(true)
                 }
+                return null
             }
+        }
 
-            override fun onPostExecute(result: T) {
-                progress.dismiss()
-                success(result)
-            }
+        override fun onPostExecute(result: T) {
+            progress.dismiss()
+            success(result)
+        }
 
-            override fun onCancelled() {
-                progress.dismiss()
-            }
+        override fun onCancelled() {
+            progress.dismiss()
         }
     }
 

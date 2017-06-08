@@ -30,10 +30,12 @@ class NotifyingService : IntentService("NotifyingService") {
     }
 
     override fun onHandleIntent(intent: Intent) {
-        if (prefs.isNotifyOn) {
-            val sleepInSeconds = if (prefs.isNotifyRandom) Random().nextInt(60) else prefs.notifyDuration
-            TimeUnit.SECONDS.sleep(sleepInSeconds.toLong())
-            displayNotification()
+        with(prefs) {
+            if (isNotifyOn) {
+                val sleepInSeconds = if (isNotifyRandom) Random().nextInt(60) else notifyDuration
+                TimeUnit.SECONDS.sleep(sleepInSeconds.toLong())
+                displayNotification()
+            }
         }
     }
 

@@ -14,6 +14,7 @@
 
         <android.support.design.widget.TextInputLayout
                 style="@style/TextAppearance.App.TextInputLayout"
+                android:id="@+id/creator_text_layout"
                 android:hint="Enter new Content here!"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

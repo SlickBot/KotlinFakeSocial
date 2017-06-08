@@ -9,8 +9,8 @@ import java.io.IOException
  * Created by SlickyPC on 30.5.2017
  */
 internal class CreatorTask(private val activity: CreatorActivity,
-                           private val content: String
-) : ProgressDialogTask<Boolean>(activity, "Uploading Content...") {
+                           private val content: String)
+    : ProgressDialogTask<Boolean>(activity, "Uploading Content...") {
 
     @Throws(IOException::class)
     override fun backgroundTask(): Boolean {

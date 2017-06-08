@@ -5,7 +5,7 @@ import android.util.Patterns
 import android.view.View
 import android.widget.CheckBox
 import com.slicky.ulj.kotlinfakesocial.R
-import com.slicky.ulj.kotlinfakesocial.string
+import com.slicky.ulj.kotlinfakesocial.text
 
 /**
  * Created by SlickyPC on 1.6.2017
@@ -18,15 +18,9 @@ internal class SignUpValidator(view: View) {
     private val firstPasswordLayout = view.findViewById(R.id.signup_first_password_layout) as TextInputLayout
     private val secondPasswordLayout = view.findViewById(R.id.signup_second_password_layout) as TextInputLayout
 
-    private val firstField = firstLayout.editText
-    private val lastField = lastLayout.editText
-    private val emailField = emailLayout.editText
-    private val firstPasswordField = firstPasswordLayout.editText
-    private val secondPasswordField = secondPasswordLayout.editText
-
     private val legalCheckBox = view.findViewById(R.id.legal_checkbox) as CheckBox
 
-    val acceptedLegalNotice: Boolean
+    internal val acceptedLegalNotice: Boolean
         get() = legalCheckBox.isChecked
 
     fun validate(): Boolean {
@@ -38,11 +32,11 @@ internal class SignUpValidator(view: View) {
         firstPasswordLayout.error = null
         secondPasswordLayout.error = null
 
-        val first = firstField.string
-        val last = lastField.string
-        val email = emailField.string
-        val firstPassword = firstPasswordField.string
-        val secondPassword = secondPasswordField.string
+        val first = firstLayout.text
+        val last = lastLayout.text
+        val email = emailLayout.text
+        val firstPassword = firstPasswordLayout.text
+        val secondPassword = secondPasswordLayout.text
 
         if (first.length < 2) {
             firstLayout.error = "First name is too short! (min 2)"

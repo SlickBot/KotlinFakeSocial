@@ -60,11 +60,10 @@ object FakeDBHandler : DBHandler {
             // Create new Content.
             val newContent = Content(it, content, System.currentTimeMillis())
             // Create new Content list with new Content in top.
-            val newContents = ArrayList<Content>()
-            newContents.add(newContent)
-            newContents.addAll(contentList ?: emptyList())
-            // Replace old Contents with new Contents.
-            contentList = newContents
+            contentList = ArrayList<Content>().apply {
+                add(newContent)
+                addAll(contentList ?: emptyList())
+            }
             return true
         }
         return false
@@ -111,7 +110,7 @@ object FakeDBHandler : DBHandler {
                 .execute().body()
 
         // Distinct received persons by image URL.
-        val candidates = distinctByURL(query.results)
+        val candidates = query.results.distinctBy { it.picture.large }
 
         if (candidates.isEmpty())
             throw IOException("Did not receive enough candidates (size < 1)")
@@ -120,23 +119,23 @@ object FakeDBHandler : DBHandler {
     }
 
     @Throws(IOException::class)
-    private fun generateContent(): List<Content> {
-        val list = ArrayList<Content>()
+    private fun generateContent() = mutableListOf<Content>().also { list ->
         val random = Random()
 
-        friendList?.let {
-            for (i in 0..9) {
+        friendList?.let { friends ->
+            repeat(10) {
+
                 // Blocking api request for new Content text.
                 val query = ApiServices.contentApi
                         .getContent()
                         .execute().body() ?: throw IOException("Did not receive Content (is null)")
 
                 // Pick random Content owner.
-                val randy = it[Random().nextInt(it.size)]
+                val randy = friends[random.nextInt(friends.size)]
 
                 // Find last post time or set it to currentTimeMillis.
-                val lastPostTime = if (list.size > 0)
-                    list[list.size - 1].postedAt
+                val lastPostTime = if (list.isNotEmpty())
+                    list.last().postedAt
                 else
                     System.currentTimeMillis()
 
@@ -148,19 +147,6 @@ object FakeDBHandler : DBHandler {
                 list.add(content)
             }
         }
-        return list
-    }
-
-    private fun distinctByURL(people: List<Person>): List<Person> {
-        val filtered = ArrayList<Person>()
-        val urls = HashSet<String>()
-
-        for (friend in people) {
-            val url = friend.picture.large
-            if (urls.add(url))
-                filtered.add(friend)
-        }
-        return filtered
     }
 
     private fun simulateWork() {

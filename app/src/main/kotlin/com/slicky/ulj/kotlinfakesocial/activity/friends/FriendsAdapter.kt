@@ -15,8 +15,8 @@ import jp.wasabeef.picasso.transformations.CropCircleTransformation
  * Created by SlickyPC on 24.5.2017
  */
 internal class FriendsAdapter(private val activity: FriendsActivity,
-                              private val recycler: RecyclerView
-) : RecyclerView.Adapter<FriendsViewHolder>() {
+                              private val recycler: RecyclerView)
+    : RecyclerView.Adapter<FriendsViewHolder>() {
 
     private val friendsList = mutableListOf<Person>()
 

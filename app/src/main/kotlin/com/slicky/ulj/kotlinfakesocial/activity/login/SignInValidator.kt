@@ -14,17 +14,14 @@ internal class SignInValidator(view: View) {
     private val emailLayout = view.findViewById(R.id.signin_email_layout) as TextInputLayout
     private val passwordLayout = view.findViewById(R.id.signin_password_layout) as TextInputLayout
 
-    private val emailField = emailLayout.editText
-    private val passwordField = passwordLayout.editText
-
     fun validate(): Boolean {
         emailLayout.error = null
         passwordLayout.error = null
 
         var errorField: View? = null
 
-        val email = emailField.string
-        val password = passwordField.string
+        val email = emailLayout.editText.string
+        val password = passwordLayout.editText.string
 
         if (email.length < 5) {
             emailLayout.error = "Email is too short! (min 5)"

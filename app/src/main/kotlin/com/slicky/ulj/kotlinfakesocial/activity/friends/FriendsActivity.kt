@@ -21,11 +21,10 @@ class FriendsActivity : BackableActivity() {
         private val TAG = FriendsActivity::class.java.canonicalName
     }
 
-    private val recycler by findView<RecyclerView>(R.id.friends_recycler_view)
-
     internal lateinit var friendsAdapter: FriendsAdapter
-
     private var friendsTask: FriendsTask? = null
+
+    private val recycler by findView<RecyclerView>(R.id.friends_recycler_view)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

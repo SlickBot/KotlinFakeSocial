@@ -35,10 +35,6 @@ class SignInFragment : Fragment() {
 
     private var task: SignInTask? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     @SuppressLint("SetTextI18n")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return inflater.inflate(R.layout.signin_fragment, container, false).apply {
@@ -76,7 +72,7 @@ class SignInFragment : Fragment() {
         if (validator.validate())
             task = SignInTask(this, emailField.string, passwordField.string).apply { execute() }
         else
-            context.shake(emailField, passwordField)
+            shakeStage()
     }
 
     internal fun successSignin() {
@@ -86,9 +82,11 @@ class SignInFragment : Fragment() {
 
     internal fun failSignin(text: String, e: Exception?) {
         displayDialog(text + if (e != null) "\n" + e.localizedMessage else "")
-        context.shake(emailField, passwordField)
+        shakeStage()
         Log.wtf(TAG, text, e)
     }
+
+    private fun shakeStage() = context.shake(emailField, passwordField)
 
     private fun displayDialog(text: String) {
         activity.runOnUiThread {
