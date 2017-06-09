@@ -3,7 +3,6 @@ package com.slicky.ulj.kotlinfakesocial.activity.login
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.app.AlertDialog
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,11 +10,8 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo.IME_ACTION_DONE
 import android.widget.Button
 import android.widget.EditText
-import com.slicky.ulj.kotlinfakesocial.R
+import com.slicky.ulj.kotlinfakesocial.*
 import com.slicky.ulj.kotlinfakesocial.activity.content.ContentActivity
-import com.slicky.ulj.kotlinfakesocial.shake
-import com.slicky.ulj.kotlinfakesocial.startActivity
-import com.slicky.ulj.kotlinfakesocial.string
 
 /**
  * Created by SlickyPC on 18.5.2017
@@ -81,18 +77,10 @@ class SignInFragment : Fragment() {
     }
 
     internal fun failSignin(text: String, e: Exception?) {
-        displayDialog(text + if (e != null) "\n" + e.localizedMessage else "")
+        activity.displayAlert(text + if (e != null) "\n" + e.localizedMessage else "")
         shakeStage()
         Log.wtf(TAG, text, e)
     }
 
     private fun shakeStage() = context.shake(emailField, passwordField)
-
-    private fun displayDialog(text: String) {
-        activity.runOnUiThread {
-            val builder = AlertDialog.Builder(context, R.style.AppTheme_Dialog)
-                    .setMessage(text)
-            builder.create().show()
-        }
-    }
 }

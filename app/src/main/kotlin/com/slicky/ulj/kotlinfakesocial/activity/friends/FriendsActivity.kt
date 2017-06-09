@@ -1,7 +1,6 @@
 package com.slicky.ulj.kotlinfakesocial.activity.friends
 
 import android.os.Bundle
-import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -9,6 +8,7 @@ import com.slicky.ulj.kotlinfakesocial.R
 import com.slicky.ulj.kotlinfakesocial.activity.BackableActivity
 import com.slicky.ulj.kotlinfakesocial.activity.login.LoginActivity
 import com.slicky.ulj.kotlinfakesocial.db.FakeDBHandler
+import com.slicky.ulj.kotlinfakesocial.displayAlert
 import com.slicky.ulj.kotlinfakesocial.findView
 import com.slicky.ulj.kotlinfakesocial.startActivity
 
@@ -47,7 +47,12 @@ class FriendsActivity : BackableActivity() {
     }
 
     internal fun onFail(text: String, e: Exception?) {
-        displaySignOutDialog(text + if (e != null) "\n" + e.localizedMessage else "")
+        displayAlert(text + if (e != null) "\n" + e.localizedMessage else "") {
+            setCancelable(false)
+            setPositiveButton("Sign Out") { _, _ ->
+                logOut()
+            }
+        }
         Log.wtf(TAG, text, e)
     }
 
@@ -55,15 +60,5 @@ class FriendsActivity : BackableActivity() {
         FakeDBHandler.signout()
         startActivity<LoginActivity>()
         finish()
-    }
-
-    private fun displaySignOutDialog(text: String) {
-        runOnUiThread {
-            val builder = AlertDialog.Builder(this@FriendsActivity, R.style.AppTheme_Dialog)
-                    .setMessage(text)
-                    .setCancelable(false)
-                    .setPositiveButton("Sign Out", { _, _ -> logOut() })
-            builder.create().show()
-        }
     }
 }

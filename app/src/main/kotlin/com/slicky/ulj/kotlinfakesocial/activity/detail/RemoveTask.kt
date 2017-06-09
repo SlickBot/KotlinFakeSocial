@@ -14,15 +14,9 @@ class RemoveTask(private val activity: DetailActivity,
     : ProgressDialogTask<Unit>(activity, "Removing Content...") {
 
     @Throws(IOException::class)
-    override fun backgroundTask(): Unit {
-        return FakeDBHandler.removeContent(content)
-    }
+    override fun backgroundTask() = FakeDBHandler.removeContent(content)
 
-    override fun success(result: Unit) {
-        activity.finish()
-    }
+    override fun success(result: Unit) = activity.finish()
 
-    override fun fail(e: Exception) {
-        activity.handleError("Error occurred while removing Content!", e)
-    }
+    override fun fail(e: Exception) = activity.handleError("Error occurred while removing Content!", e)
 }

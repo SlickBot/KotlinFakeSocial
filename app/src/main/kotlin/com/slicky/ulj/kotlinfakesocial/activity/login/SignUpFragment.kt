@@ -2,18 +2,14 @@ package com.slicky.ulj.kotlinfakesocial.activity.login
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.app.AlertDialog
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import com.slicky.ulj.kotlinfakesocial.R
+import com.slicky.ulj.kotlinfakesocial.*
 import com.slicky.ulj.kotlinfakesocial.activity.content.ContentActivity
-import com.slicky.ulj.kotlinfakesocial.shake
-import com.slicky.ulj.kotlinfakesocial.startActivity
-import com.slicky.ulj.kotlinfakesocial.string
 
 /**
  * Created by SlickyPC on 18.5.2017
@@ -67,7 +63,7 @@ class SignUpFragment : Fragment() {
                         emailField.string,
                         firstPasswordField.string).apply { execute() }
             } else {
-                displayDialog("You have to accept legal notice!")
+                activity.displayAlert("You have to accept legal notice!")
             }
         } else {
             shakeStage()
@@ -80,20 +76,12 @@ class SignUpFragment : Fragment() {
     }
 
     internal fun failSignup(text: String, e: Exception?) {
-        displayDialog(text + if (e != null) "\n" + e.localizedMessage else "")
+        activity.displayAlert(text + if (e != null) "\n" + e.localizedMessage else "")
         shakeStage()
         Log.wtf(TAG, text, e)
     }
 
     private fun shakeStage() {
         context.shake(firstField, lastField, emailField, firstPasswordField, secondPasswordField)
-    }
-
-    private fun displayDialog(text: String) {
-        activity.runOnUiThread {
-            val builder = AlertDialog.Builder(context, R.style.AppTheme_Dialog)
-                    .setMessage(text)
-            builder.create().show()
-        }
     }
 }

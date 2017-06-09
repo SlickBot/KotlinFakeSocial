@@ -1,12 +1,12 @@
 package com.slicky.ulj.kotlinfakesocial.activity.creator
 
 import android.os.Bundle
-import android.support.v7.app.AlertDialog
 import android.util.Log
 import android.view.View
 import android.widget.EditText
 import com.slicky.ulj.kotlinfakesocial.R
 import com.slicky.ulj.kotlinfakesocial.activity.BackableActivity
+import com.slicky.ulj.kotlinfakesocial.displayAlert
 import com.slicky.ulj.kotlinfakesocial.findView
 import com.slicky.ulj.kotlinfakesocial.string
 
@@ -20,7 +20,6 @@ class CreatorActivity : BackableActivity() {
     }
 
     private val textField by findView<EditText>(R.id.creator_text)
-
     private var task: CreatorTask? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,21 +40,14 @@ class CreatorActivity : BackableActivity() {
     }
 
     internal fun onCreatingSuccess() {
-        displayDialog("Successfully uploaded new Content!")
+        displayAlert("Successfully uploaded new Content!") {
+            setCancelable(false)
+            setPositiveButton("Cool!", { _, _ -> finish() })
+        }
     }
 
     internal fun onCreatingFail(text: String, e: Exception? = null) {
-        displayDialog(text + if (e != null) "\n" + e.localizedMessage else "")
+        displayAlert(text + if (e != null) "\n" + e.localizedMessage else "")
         Log.wtf(TAG, text, e)
-    }
-
-    private fun displayDialog(text: String) {
-        runOnUiThread {
-            val builder = AlertDialog.Builder(this@CreatorActivity, R.style.AppTheme_Dialog)
-                    .setMessage(text)
-                    .setCancelable(false)
-                    .setPositiveButton("Cool!", { _, _ -> finish() })
-            builder.create().show()
-        }
     }
 }

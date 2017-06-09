@@ -2,7 +2,6 @@ package com.slicky.ulj.kotlinfakesocial.activity.detail
 
 import android.app.Activity
 import android.os.Bundle
-import android.support.v7.app.AlertDialog
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -31,6 +30,7 @@ class DetailActivity : BackableActivity() {
             startActivity<DetailActivity>(KEY_CONTENT to content)
         }
     }
+
     private val imageView by findView<ImageView>(R.id.detail_image)
     private val nameField by findView<TextView>(R.id.detail_owner_name)
     private val postedAtField by findView<TextView>(R.id.detail_posted_at)
@@ -65,12 +65,11 @@ class DetailActivity : BackableActivity() {
 
     override fun onStop() {
         super.onStop()
-        if (task != null)
-            task!!.cancel()
+        task?.cancel()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        getMenuInflater().inflate(R.menu.detail_options, menu)
+        menuInflater.inflate(R.menu.detail_options, menu)
         return true
     }
 
@@ -92,25 +91,14 @@ class DetailActivity : BackableActivity() {
     }
 
     internal fun handleError(text: String, e: Exception?) {
-        displayDialog(text + if (e != null) "\n" + e.localizedMessage else "")
+        displayAlert(text + if (e != null) "\n" + e.localizedMessage else "")
         Log.wtf(TAG, text, e)
     }
 
     private fun displayConfirmationDialog() {
-        runOnUiThread {
-            val builder = AlertDialog.Builder(this@DetailActivity, R.style.AppTheme_Dialog)
-                    .setMessage("Do you really want to remove this Content?")
-                    .setPositiveButton("Yes") { _, _ -> startRemoveTask() }
-                    .setNegativeButton("No") { dialog, _ -> dialog.dismiss() }
-            builder.create().show()
-        }
-    }
-
-    private fun displayDialog(text: String) {
-        runOnUiThread {
-            val builder = AlertDialog.Builder(this@DetailActivity, R.style.AppTheme_Dialog)
-                    .setMessage(text)
-            builder.create().show()
+        displayAlert("Do you really want to remove this Content?") {
+            setPositiveButton("Yes") { _, _ -> startRemoveTask() }
+            setNegativeButton("No") { dialog, _ -> dialog.dismiss() }
         }
     }
 }

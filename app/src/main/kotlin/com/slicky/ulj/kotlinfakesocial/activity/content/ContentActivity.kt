@@ -5,7 +5,6 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -13,7 +12,7 @@ import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import com.slicky.ulj.kotlinfakesocial.R
+import com.slicky.ulj.kotlinfakesocial.*
 import com.slicky.ulj.kotlinfakesocial.activity.ProgressDialogTask
 import com.slicky.ulj.kotlinfakesocial.activity.about.AboutActivity
 import com.slicky.ulj.kotlinfakesocial.activity.creator.CreatorActivity
@@ -21,9 +20,6 @@ import com.slicky.ulj.kotlinfakesocial.activity.friends.FriendsActivity
 import com.slicky.ulj.kotlinfakesocial.activity.login.LoginActivity
 import com.slicky.ulj.kotlinfakesocial.activity.settings.SettingsActivity
 import com.slicky.ulj.kotlinfakesocial.db.FakeDBHandler
-import com.slicky.ulj.kotlinfakesocial.findView
-import com.slicky.ulj.kotlinfakesocial.startActivity
-import com.slicky.ulj.kotlinfakesocial.startShareActivity
 
 class ContentActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -92,6 +88,7 @@ class ContentActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
             R.id.nav_share -> startShareActivity("Fakest Social Network!", "This app is really FAKE!")
             R.id.nav_logout -> logOut()
         }
+
         drawer.closeDrawers()
         return false
     }
@@ -116,17 +113,10 @@ class ContentActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
     }
 
     internal fun handleError(text: String, e: Exception?) {
-        displaySignOutDialog(text + if (e != null) "\n" + e.localizedMessage else "")
-        Log.wtf(TAG, text, e)
-    }
-
-    private fun displaySignOutDialog(text: String) {
-        runOnUiThread {
-            val builder = AlertDialog.Builder(this@ContentActivity, R.style.AppTheme_Dialog)
-                    .setMessage(text)
-                    .setCancelable(false)
-                    .setPositiveButton("Sign Out", { _, _ -> logOut() })
-            builder.create().show()
+        displayAlert(text + if (e != null) "\n" + e.localizedMessage else "") {
+            setCancelable(false)
+            setPositiveButton("Sign Out", { _, _ -> logOut() })
         }
+        Log.wtf(TAG, text, e)
     }
 }

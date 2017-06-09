@@ -13,6 +13,7 @@ import android.os.Parcelable
 import android.os.Vibrator
 import android.support.design.widget.TextInputLayout
 import android.support.v4.content.ContextCompat
+import android.support.v7.app.AlertDialog
 import android.support.v7.widget.AppCompatDrawableManager
 import android.text.format.DateFormat
 import android.view.View
@@ -141,4 +142,13 @@ fun Activity.startShareActivity(subject: String, text: String) {
 fun Activity.startBrowseActivity(url: String) {
     val browseIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
     startActivity(browseIntent)
+}
+
+fun Activity.displayAlert(message: String? = null, op: (AlertDialog.Builder.() -> Unit)? = null) {
+    runOnUiThread {
+        AlertDialog.Builder(this, R.style.AppTheme_Dialog).apply {
+            message?.let { setMessage(it) }
+            op?.invoke(this)
+        }
+    }
 }

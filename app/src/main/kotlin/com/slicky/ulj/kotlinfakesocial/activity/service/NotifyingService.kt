@@ -45,14 +45,14 @@ class NotifyingService : IntentService("NotifyingService") {
         val callbackIntent = Intent(applicationContext, ContentActivity::class.java)
         val pendingIntent = PendingIntent.getActivity(applicationContext, 0, callbackIntent, 0)
 
-        val notification = NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.logo)
-                .setContentIntent(pendingIntent)
-                .setContentTitle(getString(R.string.app_name))
-                .setSubText("Time ran out!")
-                .setContentText("You should open Kotlin Fake Social again!")
-                .setAutoCancel(true)
-                .build()
+        val notification = NotificationCompat.Builder(this).apply {
+            setSmallIcon(R.drawable.logo)
+            setContentIntent(pendingIntent)
+            setContentTitle(getString(R.string.app_name))
+            setSubText("Time ran out!")
+            setContentText("You should open Kotlin Fake Social again!")
+            setAutoCancel(true)
+        }.build()
 
         val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         manager.notify(NOTIFY_ID, notification)
