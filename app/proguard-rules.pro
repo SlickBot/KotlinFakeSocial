@@ -15,3 +15,7 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+# https://github.com/square/okio/issues/60
+-dontwarn okio.**
+-dontwarn retrofit2.**
