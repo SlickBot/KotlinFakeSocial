@@ -10,6 +10,7 @@ import com.slicky.ulj.kotlinfakesocial.activity.login.LoginActivity
 import com.slicky.ulj.kotlinfakesocial.db.FakeDBHandler
 import com.slicky.ulj.kotlinfakesocial.displayAlert
 import com.slicky.ulj.kotlinfakesocial.findView
+import com.slicky.ulj.kotlinfakesocial.model.person.Person
 import com.slicky.ulj.kotlinfakesocial.startActivity
 
 /**
@@ -21,7 +22,8 @@ class FriendsActivity : BackableActivity() {
         private val TAG = FriendsActivity::class.java.canonicalName
     }
 
-    internal lateinit var friendsAdapter: FriendsAdapter
+    private lateinit var friendsAdapter: FriendsAdapter
+
     private var friendsTask: FriendsTask? = null
 
     private val recycler by findView<RecyclerView>(R.id.friends_recycler_view)
@@ -44,6 +46,10 @@ class FriendsActivity : BackableActivity() {
     override fun onStop() {
         super.onStop()
         friendsTask?.cancel()
+    }
+
+    internal fun setFriends(friends: List<Person>) {
+        friendsAdapter.friends = friends
     }
 
     internal fun onFail(text: String, e: Exception?) {

@@ -13,10 +13,10 @@ GitCompare is used to compare languages used on Github.
 ## Kotlin Fake Social
 <img src="app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" height="200" alt="Logo"/>
 
-This is a Kotlin version of Fake Social. Application is using services ([randomuser.me](https://randomuser.me/)) and ([watchout4snakes.com](http://watchout4snakes.com/wo4snakes/)) to create fake profiles and content.
+This is a Kotlin version of Fake Social. Application is using services ([randomuser.me](https://randomuser.me/)) and ([watchout4snakes.com](http://watchout4snakes.com/wo4snakes/)) to create fake profiles and contents.
 
 ### Screenshots
-<img src="screenshots/login.png" height="375" alt="Login"/><img src="screenshots/content.png" height="375" alt="Content"/><img src="screenshots/search.png" height="375" alt="Search"/><img src="screenshots/profile.png" height="375" alt="Profile"/>
+<img src="screenshots/login.png" height="375" alt="Login"/><img src="screenshots/contents.png" height="375" alt="Content"/><img src="screenshots/search.png" height="375" alt="Search"/><img src="screenshots/profile.png" height="375" alt="Profile"/>
 
 ### Archetypes
 Application is comprised of 7 core mobile screen archetypes:

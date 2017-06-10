@@ -14,7 +14,7 @@ internal class ContentTask(private val activity: ContentActivity)
     @Throws(IOException::class)
     override fun backgroundTask() = FakeDBHandler.getContent()
 
-    override fun success(result: List<Content>) = activity.contentAdapter.setContent(result)
+    override fun success(result: List<Content>) = activity.setContent(result)
 
     override fun fail(e: Exception) = activity.handleError("Could not retrieve Content!", e)
 }

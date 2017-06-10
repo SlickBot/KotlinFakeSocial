@@ -14,7 +14,7 @@ internal class FriendsTask(private val activity: FriendsActivity
     @Throws(IOException::class)
     override fun backgroundTask() = FakeDBHandler.getFriends()
 
-    override fun success(result: List<Person>) = activity.friendsAdapter.setFriends(result)
+    override fun success(result: List<Person>) = activity.setFriends(result)
 
     override fun fail(e: Exception) = activity.onFail("Could not retrieve Friends!", e)
 }

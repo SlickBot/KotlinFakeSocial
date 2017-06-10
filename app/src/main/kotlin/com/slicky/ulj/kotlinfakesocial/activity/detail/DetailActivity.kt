@@ -24,17 +24,17 @@ class DetailActivity : BackableActivity() {
 
     companion object {
         private val TAG = ProfileActivity::class.java.canonicalName
-        private val KEY_CONTENT = TAG + ".content"
+        private val KEY_CONTENT = TAG + ".contents"
 
         fun Activity.startDetail(content: Content) {
             startActivity<DetailActivity>(KEY_CONTENT to content)
         }
     }
 
-    private val imageView by findView<ImageView>(R.id.detail_image)
-    private val nameField by findView<TextView>(R.id.detail_owner_name)
-    private val postedAtField by findView<TextView>(R.id.detail_posted_at)
-    private val textField by findView<TextView>(R.id.detail_text)
+    private val imageView       by findView<ImageView>(R.id.detail_image)
+    private val nameField       by findView<TextView>(R.id.detail_owner_name)
+    private val postedAtField   by findView<TextView>(R.id.detail_posted_at)
+    private val textField       by findView<TextView>(R.id.detail_text)
 
     private lateinit var content: Content
 
@@ -86,10 +86,6 @@ class DetailActivity : BackableActivity() {
         startFriendProfile(content.owner)
     }
 
-    private fun startRemoveTask() {
-        task = RemoveTask(this, content).apply { execute() }
-    }
-
     internal fun handleError(text: String, e: Exception?) {
         displayAlert(text + if (e != null) "\n" + e.localizedMessage else "")
         Log.wtf(TAG, text, e)
@@ -97,7 +93,7 @@ class DetailActivity : BackableActivity() {
 
     private fun displayConfirmationDialog() {
         displayAlert("Do you really want to remove this Content?") {
-            setPositiveButton("Yes") { _, _ -> startRemoveTask() }
+            setPositiveButton("Yes") { _, _ -> task = RemoveTask(this@DetailActivity, content).apply { execute() } }
             setNegativeButton("No") { dialog, _ -> dialog.dismiss() }
         }
     }

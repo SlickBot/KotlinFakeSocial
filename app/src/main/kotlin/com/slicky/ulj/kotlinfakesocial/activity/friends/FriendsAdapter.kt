@@ -18,13 +18,11 @@ internal class FriendsAdapter(private val activity: FriendsActivity,
                               private val recycler: RecyclerView)
     : RecyclerView.Adapter<FriendsViewHolder>() {
 
-    private val friendsList = mutableListOf<Person>()
-
-    fun setFriends(friends: List<Person>?) {
-        friendsList.clear()
-        friends?.let { friendsList.addAll(it) }
-        notifyDataSetChanged()
-    }
+    internal var friends = listOf<Person>()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendsViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -32,7 +30,7 @@ internal class FriendsAdapter(private val activity: FriendsActivity,
 
         view.setOnClickListener {
             val itemPosition = recycler.getChildLayoutPosition(view)
-            val friend = friendsList[itemPosition]
+            val friend = friends[itemPosition]
             activity.startFriendProfile(friend)
         }
 
@@ -40,10 +38,12 @@ internal class FriendsAdapter(private val activity: FriendsActivity,
     }
 
     override fun onBindViewHolder(holder: FriendsViewHolder, position: Int) {
-        val friend = friendsList[position]
+        val friend = friends[position]
+
         with(holder) {
             friendName.text = friend.fullName()
             friendInfo.text = friend.info()
+
             Picasso.with(activity)
                     .load(friend.picture.medium)
                     .placeholder(R.drawable.ic_user)
@@ -52,5 +52,5 @@ internal class FriendsAdapter(private val activity: FriendsActivity,
         }
     }
 
-    override fun getItemCount() = friendsList.size
+    override fun getItemCount() = friends.size
 }

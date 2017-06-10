@@ -20,6 +20,7 @@ import com.slicky.ulj.kotlinfakesocial.activity.friends.FriendsActivity
 import com.slicky.ulj.kotlinfakesocial.activity.login.LoginActivity
 import com.slicky.ulj.kotlinfakesocial.activity.settings.SettingsActivity
 import com.slicky.ulj.kotlinfakesocial.db.FakeDBHandler
+import com.slicky.ulj.kotlinfakesocial.model.content.Content
 
 class ContentActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -27,19 +28,19 @@ class ContentActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
         private val TAG = ContentActivity::class.java.canonicalName
     }
 
-    private val navigationView by findView<NavigationView>(R.id.nav_view)
-    private val drawer by findView<DrawerLayout>(R.id.drawer_layout)
-    private val toolbar by findView<Toolbar>(R.id.toolbar)
-    private val recycler by findView<RecyclerView>(R.id.content_recycler_view)
+    private val navigationView  by findView<NavigationView>(R.id.nav_view)
+    private val drawer          by findView<DrawerLayout>(R.id.drawer_layout)
+    private val toolbar         by findView<Toolbar>(R.id.toolbar)
+    private val recycler        by findView<RecyclerView>(R.id.content_recycler_view)
 
-    internal lateinit var contentAdapter: ContentAdapter
+    private lateinit var contentAdapter: ContentAdapter
 
     private var contentTask: ContentTask? = null
     private var userTask: ProgressDialogTask<*>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         if (!FakeDBHandler.isSignedIn)
-            logOut()
+            signOut()
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.content_activity)
@@ -86,7 +87,7 @@ class ContentActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
             R.id.nav_settings -> startActivity<SettingsActivity>()
             R.id.nav_about -> startActivity<AboutActivity>()
             R.id.nav_share -> startShareActivity("Fakest Social Network!", "This app is really FAKE!")
-            R.id.nav_logout -> logOut()
+            R.id.nav_logout -> signOut()
         }
 
         drawer.closeDrawers()
@@ -106,7 +107,11 @@ class ContentActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
         return super.onOptionsItemSelected(item)
     }
 
-    private fun logOut() {
+    internal fun setContent(contents: List<Content>) {
+        contentAdapter.contents = contents
+    }
+
+    private fun signOut() {
         startActivity<LoginActivity>()
         FakeDBHandler.signout()
         finish()
@@ -115,7 +120,7 @@ class ContentActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
     internal fun handleError(text: String, e: Exception?) {
         displayAlert(text + if (e != null) "\n" + e.localizedMessage else "") {
             setCancelable(false)
-            setPositiveButton("Sign Out", { _, _ -> logOut() })
+            setPositiveButton("Sign Out", { _, _ -> signOut() })
         }
         Log.wtf(TAG, text, e)
     }

@@ -103,7 +103,7 @@ object FakeDBHandler : DBHandler {
             person = candidates[0]
             // Use rest as friends.
             friendList = candidates.subList(1, candidates.size)
-            // Generate content.
+            // Generate contents.
             contentList = generateContent()
         }
     }

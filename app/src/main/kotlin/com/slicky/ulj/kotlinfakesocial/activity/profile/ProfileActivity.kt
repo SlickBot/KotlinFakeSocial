@@ -29,17 +29,17 @@ class ProfileActivity : BackableActivity() {
         }
     }
 
-    private val imageView by findView<ImageView>(R.id.profile_icon)
-    private val nameField by findView<TextView>(R.id.profile_name)
-    private val emailField by findView<TextView>(R.id.profile_email)
-    private val cellField by findView<TextView>(R.id.profile_cell)
-    private val phoneField by findView<TextView>(R.id.profile_phone)
-    private val birthdayField by findView<TextView>(R.id.profile_birthday)
+    private val imageView       by findView<ImageView>(R.id.profile_icon)
+    private val nameField       by findView<TextView>(R.id.profile_name)
+    private val emailField      by findView<TextView>(R.id.profile_email)
+    private val cellField       by findView<TextView>(R.id.profile_cell)
+    private val phoneField      by findView<TextView>(R.id.profile_phone)
+    private val birthdayField   by findView<TextView>(R.id.profile_birthday)
     private val registeredField by findView<TextView>(R.id.profile_registered)
-    private val streetField by findView<TextView>(R.id.profile_street)
-    private val cityField by findView<TextView>(R.id.profile_city)
-    private val stateField by findView<TextView>(R.id.profile_state)
-    private val natField by findView<TextView>(R.id.profile_nat)
+    private val streetField     by findView<TextView>(R.id.profile_street)
+    private val cityField       by findView<TextView>(R.id.profile_city)
+    private val stateField      by findView<TextView>(R.id.profile_state)
+    private val natField        by findView<TextView>(R.id.profile_nat)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

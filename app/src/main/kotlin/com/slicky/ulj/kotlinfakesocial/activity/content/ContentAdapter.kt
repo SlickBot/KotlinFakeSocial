@@ -19,13 +19,11 @@ internal class ContentAdapter(private val activity: ContentActivity,
                               private val recycler: RecyclerView)
     : RecyclerView.Adapter<ContentViewHolder>() {
 
-    private val contentList = mutableListOf<Content>()
-
-    fun setContent(content: List<Content>?) {
-        contentList.clear()
-        content?.let { contentList.addAll(it) }
-        notifyDataSetChanged()
-    }
+    internal var contents = listOf<Content>()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContentViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -33,15 +31,15 @@ internal class ContentAdapter(private val activity: ContentActivity,
 
         view.setOnClickListener {
             val itemPosition = recycler.getChildLayoutPosition(view)
-            val content = contentList[itemPosition]
-            activity.startDetail(content)
+            val newContent = contents[itemPosition]
+            activity.startDetail(newContent)
         }
 
         return ContentViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ContentViewHolder, position: Int) {
-        val newContent = contentList[position]
+        val newContent = contents[position]
         val owner = newContent.owner
         val date = Date(newContent.postedAt)
 
@@ -58,5 +56,5 @@ internal class ContentAdapter(private val activity: ContentActivity,
         }
     }
 
-    override fun getItemCount() = contentList.size
+    override fun getItemCount() = contents.size
 }

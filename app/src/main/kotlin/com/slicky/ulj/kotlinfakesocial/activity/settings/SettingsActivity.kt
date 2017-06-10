@@ -16,10 +16,10 @@ class SettingsActivity : BackableActivity() {
 
     private lateinit var prefs: FakePreferences
 
-    private val onOffSwitch by findView<Switch>(R.id.settings_on_off_switch)
-    private val durationField by findView<EditText>(R.id.settings_duration_field)
-    private val durationText by findView<TextView>(R.id.settings_duration_text)
-    private val randomSwitch by findView<Switch>(R.id.settings_random_switch)
+    private val onOffSwitch     by findView<Switch>(R.id.settings_on_off_switch)
+    private val durationField   by findView<EditText>(R.id.settings_duration_field)
+    private val durationText    by findView<TextView>(R.id.settings_duration_text)
+    private val randomSwitch    by findView<Switch>(R.id.settings_random_switch)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

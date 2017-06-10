@@ -95,7 +95,7 @@ inline fun <reified T : Service> Activity.startService(vararg params: Pair<Strin
     startService(i)
 }
 
-fun Intent.applyParams(params: Array<out Pair<String, Any?>>): Intent {
+fun Intent.applyParams(params: Array<out Pair<String, Any?>>) = this.apply {
     params.forEach { (first, value) ->
         when (value) {
             null -> putExtra(first, null as Serializable?)
@@ -127,7 +127,6 @@ fun Intent.applyParams(params: Array<out Pair<String, Any?>>): Intent {
             else -> throw IllegalArgumentException("Wrong type!")
         }
     }
-    return this
 }
 
 fun Activity.startShareActivity(subject: String, text: String) {
