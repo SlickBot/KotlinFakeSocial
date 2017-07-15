@@ -15,7 +15,7 @@
                 app:srcCompat="@drawable/ic_user"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:contentDescription="Profile photo of friend"
+                android:contentDescription="Profile photo"
 
                 android:layout_margin="32dp"
 
@@ -44,7 +44,7 @@
                 android:id="@+id/profile_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textAppearance="@style/TextAppearance.Medium"
 
                 android:layout_marginLeft="32dp"
                 android:layout_marginRight="32dp"
@@ -74,7 +74,7 @@
                 android:id="@+id/profile_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textAppearance="@style/TextAppearance.Medium"
 
                 android:layout_marginLeft="32dp"
                 android:layout_marginRight="32dp"
@@ -117,7 +117,7 @@
                 android:id="@+id/profile_cell"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textAppearance="@style/TextAppearance.Medium"
 
                 android:layout_marginLeft="32dp"
                 android:layout_marginRight="32dp"
@@ -147,7 +147,7 @@
                 android:id="@+id/profile_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textAppearance="@style/TextAppearance.Medium"
 
                 android:layout_marginLeft="32dp"
                 android:layout_marginRight="32dp"
@@ -190,7 +190,7 @@
                 android:id="@+id/profile_birthday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textAppearance="@style/TextAppearance.Medium"
 
                 android:layout_marginLeft="32dp"
                 android:layout_marginRight="32dp"
@@ -220,7 +220,7 @@
                 android:id="@+id/profile_registered"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textAppearance="@style/TextAppearance.Medium"
 
                 android:layout_marginLeft="32dp"
                 android:layout_marginRight="32dp"
@@ -263,7 +263,7 @@
                 android:id="@+id/profile_street"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textAppearance="@style/TextAppearance.Medium"
 
                 android:layout_marginLeft="32dp"
                 android:layout_marginRight="32dp"
@@ -293,7 +293,7 @@
                 android:id="@+id/profile_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textAppearance="@style/TextAppearance.Medium"
 
                 android:layout_marginLeft="32dp"
                 android:layout_marginRight="32dp"
@@ -323,7 +323,7 @@
                 android:id="@+id/profile_state"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textAppearance="@style/TextAppearance.Medium"
 
                 android:layout_marginLeft="32dp"
                 android:layout_marginRight="32dp"
@@ -353,7 +353,7 @@
                 android:id="@+id/profile_nat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textAppearance="@style/TextAppearance.Medium"
 
                 android:layout_marginBottom="16dp"
                 android:layout_marginLeft="32dp"

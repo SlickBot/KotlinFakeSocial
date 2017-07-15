@@ -19,3 +19,20 @@
 # https://github.com/square/okio/issues/60
 -dontwarn okio.**
 -dontwarn retrofit2.**
+-dontwarn javax.annotation.**
+-dontwarn com.squareup.okhttp.**
+#-dontwarn retrofit.appengine.UrlFetchClient
+
+-keepattributes Signature
+-keepattributes Exceptions
+
+-keep class retrofit.** { *; }
+-keep class com.slicky.ulj.kotlinfakesocial.model.** { *; }
+
+-keepclasseswithmembers class * {
+    @retrofit.http.* <methods>;
+}
+-keepclassmembernames interface * {
+    @retrofit.http.* <methods>;
+}
+-dontwarn retrofit2.Platform$Java8

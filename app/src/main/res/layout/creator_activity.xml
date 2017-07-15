@@ -1,64 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:ignore="HardcodedText">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="HardcodedText">
 
     <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/creator_button">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/creator_button">
 
 
         <android.support.design.widget.TextInputLayout
-                style="@style/TextAppearance.App.TextInputLayout"
-                android:id="@+id/creator_text_layout"
-                android:hint="Enter new Content here!"
+            style="@style/TextAppearance.App.TextInputLayout"
+            android:id="@+id/creator_text_layout"
+            android:hint="Enter new Content here!"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:padding="16dp"
+            android:layout_margin="16dp"
+
+            android:scrollbars="vertical"
+            app:counterEnabled="true"
+            app:counterMaxLength="256">
+
+            <android.support.design.widget.TextInputEditText
+                style="@style/EditText"
+                android:id="@+id/creator_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
-                android:padding="16dp"
-                android:layout_margin="30dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingTop="16dp"
 
-                android:scrollbars="vertical"
-                app:counterEnabled="true"
-                app:counterMaxLength="256"
-                >
-
-            <android.support.design.widget.TextInputEditText
-                    style="@style/EditText"
-                    android:id="@+id/creator_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp"
-                    android:paddingTop="16dp"
-                    android:paddingBottom="16dp"
-
-                    android:gravity="top|start"
-                    android:inputType="textMultiLine|textCapSentences"
-                    android:maxLength="300"
-                    android:minLines="5"
-                    />
+                android:gravity="top|start"
+                android:inputType="textMultiLine|textCapSentences"
+                android:maxLength="300"
+                android:minLines="5" />
         </android.support.design.widget.TextInputLayout>
 
     </ScrollView>
 
     <Button
-            android:text="Create"
-            android:id="@+id/creator_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_background_transparent"
-            android:onClick="onNewContent"
+        android:text="Create"
+        android:id="@+id/creator_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_background_solid"
+        android:onClick="onNewContent"
 
-            android:layout_margin="16dp"
+        android:layout_margin="16dp"
 
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            />
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

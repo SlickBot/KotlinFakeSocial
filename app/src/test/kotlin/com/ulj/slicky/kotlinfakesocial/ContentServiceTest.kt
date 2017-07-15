@@ -1,6 +1,6 @@
-package com.slicky.ulj.kotlinfakesocial
+package com.ulj.slicky.kotlinfakesocial
 
-import com.slicky.ulj.kotlinfakesocial.rest.ApiServices
+import com.ulj.slicky.kotlinfakesocial.rest.ApiServices
 import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before

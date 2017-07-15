@@ -1,152 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:ignore="HardcodedText">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="HardcodedText">
 
     <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/settings_on_off_text"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+
+            android:layout_marginTop="16dp"
+            android:text="Notifications state"
+            android:textAppearance="@style/TextAppearance.Medium"
+
+            app:layout_constraintEnd_toStartOf="@+id/settings_on_off_switch"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-                android:text="Notifications state"
-                android:id="@+id/settings_on_off_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:id="@+id/settings_on_off_subtext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:text="When turned on, it will start delayed notify service"
 
-                android:paddingTop="16dp"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
+            android:textAppearance="@style/TextAppearance.Small"
+            android:textColor="@color/colorTextDark"
 
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/settings_on_off_switch"
-                />
-
-        <TextView
-                android:text="When turned on, it will start delayed notify service"
-                android:id="@+id/settings_on_off_subtext"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="@color/colorTextDark"
-
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-
-                app:layout_constraintTop_toBottomOf="@+id/settings_on_off_text"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/settings_on_off_switch"
-                />
+            app:layout_constraintEnd_toStartOf="@+id/settings_on_off_switch"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/settings_on_off_text" />
 
         <Switch
-                android:theme="@style/AppTheme.Switch"
-                android:id="@+id/settings_on_off_switch"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
+            android:id="@+id/settings_on_off_switch"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
 
-                android:padding="16dp"
+            android:theme="@style/AppTheme.Switch"
 
-                app:layout_constraintTop_toTopOf="@+id/settings_on_off_text"
-                app:layout_constraintBottom_toBottomOf="@+id/settings_on_off_subtext"
-                app:layout_constraintEnd_toEndOf="parent"
-                />
-
-        <TextView
-                android:text="Delay duration"
-                android:id="@+id/settings_duration_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-
-                android:paddingTop="16dp"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-
-                app:layout_constraintTop_toBottomOf="@+id/settings_on_off_subtext"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/settings_duration_field"
-                />
+            app:layout_constraintBottom_toBottomOf="@+id/settings_on_off_subtext"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/settings_on_off_text" />
 
         <TextView
-                android:text="Duration of delay in seconds"
-                android:id="@+id/settings_duration_subtext"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="@color/colorTextDark"
-                android:labelFor="@+id/settings_duration_field"
+            android:id="@+id/settings_duration_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
 
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Delay duration"
+            android:textAppearance="@style/TextAppearance.Medium"
 
-                app:layout_constraintTop_toBottomOf="@+id/settings_duration_text"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/settings_duration_field"
-                />
+            app:layout_constraintEnd_toStartOf="@+id/settings_duration_field"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/settings_on_off_subtext" />
+
+        <TextView
+            android:id="@+id/settings_duration_subtext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:labelFor="@+id/settings_duration_field"
+            android:text="Duration of delay in seconds"
+
+            android:textAppearance="@style/TextAppearance.Small"
+            android:textColor="@color/colorTextDark"
+
+            app:layout_constraintEnd_toStartOf="@+id/settings_duration_field"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/settings_duration_text" />
 
         <EditText
-                android:id="@+id/settings_duration_field"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
-                android:textAlignment="center"
+            android:id="@+id/settings_duration_field"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:inputType="numberDecimal"
 
-                android:padding="16dp"
+            android:textAlignment="center"
 
-                app:layout_constraintTop_toTopOf="@+id/settings_duration_text"
-                app:layout_constraintBottom_toBottomOf="@+id/settings_duration_subtext"
-                app:layout_constraintEnd_toEndOf="parent"
-                />
-
-        <TextView
-                android:text="Random delay"
-                android:id="@+id/settings_random_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-
-                android:paddingTop="16dp"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-
-                app:layout_constraintTop_toBottomOf="@+id/settings_duration_subtext"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/settings_random_switch"
-                />
+            app:layout_constraintBottom_toBottomOf="@+id/settings_duration_subtext"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/settings_duration_text" />
 
         <TextView
-                android:text="Random delay will be assigned"
-                android:id="@+id/settings_random_subtext"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="@color/colorTextDark"
+            android:id="@+id/settings_random_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
 
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Random delay"
+            android:textAppearance="@style/TextAppearance.Medium"
 
-                app:layout_constraintTop_toBottomOf="@+id/settings_random_text"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/settings_random_switch"
-                />
+            app:layout_constraintEnd_toStartOf="@+id/settings_random_switch"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/settings_duration_subtext" />
+
+        <TextView
+            android:id="@+id/settings_random_subtext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:text="Random delay will be assigned"
+
+            android:textAppearance="@style/TextAppearance.Small"
+            android:textColor="@color/colorTextDark"
+
+            app:layout_constraintEnd_toStartOf="@+id/settings_random_switch"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/settings_random_text" />
 
         <Switch
-                android:theme="@style/AppTheme.Switch"
-                android:id="@+id/settings_random_switch"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
+            android:id="@+id/settings_random_switch"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
 
-                android:padding="16dp"
+            android:theme="@style/AppTheme.Switch"
 
-                app:layout_constraintTop_toTopOf="@+id/settings_random_text"
-                app:layout_constraintBottom_toBottomOf="@+id/settings_random_subtext"
-                app:layout_constraintEnd_toEndOf="parent"
-                />
+            app:layout_constraintBottom_toBottomOf="@+id/settings_random_subtext"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/settings_random_text" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

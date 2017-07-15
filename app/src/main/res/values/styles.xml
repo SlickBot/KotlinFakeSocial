@@ -14,6 +14,11 @@
         <item name="android:textColorPrimary">@color/colorText</item>
         <item name="android:textColorHint">@color/colorTextDark</item>
         <item name="android:listDivider">@color/colorPrimaryDark</item>
+
+        <item name="android:textAppearanceLarge">@style/TextAppearance.Large</item>
+        <item name="android:textAppearanceMedium">@style/TextAppearance.Medium</item>
+        <item name="android:textAppearanceSmall">@style/TextAppearance.Small</item>
+
     </style>
 
     <!-- Theme for Activities without ActionBar. -->
@@ -64,4 +69,21 @@
     <style name="AppTheme.Switch" parent="Theme.AppCompat">
         <item name="colorControlActivated">@color/colorSuccess</item>
     </style>
+
+    <!-- Text Appearance. -->
+    <style name="TextAppearance.Large" parent="TextAppearance.AppCompat.Large">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/colorText</item>
+    </style>
+
+    <style name="TextAppearance.Medium" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/colorText</item>
+    </style>
+
+    <style name="TextAppearance.Small" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorTextDark</item>
+    </style>
+
 </resources>
