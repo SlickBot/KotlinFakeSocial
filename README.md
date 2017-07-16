@@ -10,6 +10,9 @@ Project is separated into multiple modules.
 GitCompare is used to compare languages used on Github.
 - GitCompare ([HERE](https://github.com/SlickBot/GitCompare/))
 
+AppiumCompare is used to compare applications.
+- AppiumCompare ([HERE](https://github.com/SlickBot/AppiumCompare/))
+
 ## Kotlin Fake Social
 <img src="app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" height="200" alt="Logo"/>
 
