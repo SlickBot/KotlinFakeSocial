@@ -5,7 +5,7 @@ Fake Social Project is part of my UNI thesis about comparing Android developemen
 Project is separated into multiple modules.
 - Java Fake Social ([HERE](https://github.com/SlickBot/JavaFakeSocial/))
 - Kotlin Fake Social (this)
-- Anko Fake Social ([HERE](https://github.com/SlickBot/KotlinFakeSocial/))
+- Anko Fake Social ([HERE](https://github.com/SlickBot/AnkoFakeSocial/))
 
 GitCompare is used to compare languages used on Github.
 - GitCompare ([HERE](https://github.com/SlickBot/GitCompare/))
