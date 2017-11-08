@@ -8,7 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build.VERSION.SDK_INT
 import android.os.Vibrator
-import android.support.v7.app.NotificationCompat
+import android.support.v4.app.NotificationCompat
 import com.ulj.slicky.kotlinfakesocial.FakePreferences
 import com.ulj.slicky.kotlinfakesocial.R
 import com.ulj.slicky.kotlinfakesocial.activity.content.ContentActivity
@@ -59,7 +59,7 @@ class NotifyingService : IntentService("NotifyingService") {
         val callbackIntent = Intent(applicationContext, ContentActivity::class.java)
         val pendingIntent = PendingIntent.getActivity(applicationContext, 0, callbackIntent, 0)
 
-        val notification = NotificationCompat.Builder(this).apply {
+        val notification = NotificationCompat.Builder(this, "").apply {
             setSmallIcon(R.drawable.logo)
             setContentIntent(pendingIntent)
             setContentTitle(getString(R.string.app_name))

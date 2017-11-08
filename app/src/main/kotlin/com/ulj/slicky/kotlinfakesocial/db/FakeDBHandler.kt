@@ -113,7 +113,8 @@ object FakeDBHandler : DBHandler {
         // Blocking api request for new random persons.
         val query = ApiServices.personApi
                 .getPerson(50)
-                .execute().body()
+                .execute()
+                .body() ?: throw IOException("Did not receive Content (is null)")
 
         // Distinct received persons by image URL.
         val candidates = query.results.distinctBy { it.picture.large }

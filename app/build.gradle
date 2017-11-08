@@ -3,18 +3,18 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 ext {
-    support_version = '26.0.0-beta2'
-    constraint_version = '1.0.2'
-    indicator_version = '0.1.2'
+    support_version = '26.1.0'
+    constraint_version = '1.1.0-beta3'
+    indicator_version = '0.2.0'
 
-    retrofit_version = '2.1.0'
+    retrofit_version = '2.3.0'
     picasso_version = '2.5.2'
     picasso_transform_version = '2.1.2'
 }
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+    buildToolsVersion "26.0.2"
 
     defaultConfig {
         applicationId "com.ulj.slicky.kotlinfakesocial"
@@ -84,7 +84,7 @@ dependencies {
 
     // testing
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 }
