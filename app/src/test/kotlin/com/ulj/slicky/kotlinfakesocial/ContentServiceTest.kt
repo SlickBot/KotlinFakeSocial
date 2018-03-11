@@ -14,10 +14,10 @@ class ContentServiceTest {
 
     @Before
     fun can_receive_query() {
-        content = ApiServices.contentApi.getContent(
-                "car",
-                "apple"
-        ).execute().body()
+        content = ApiServices.contentApi
+                .getContent("car", "apple" )
+                .execute()
+                .body()
     }
 
     @Test

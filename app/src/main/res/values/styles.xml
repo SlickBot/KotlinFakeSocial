@@ -34,22 +34,22 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
     <!-- Text appearance for TextInputLayout. -->
-    <style name="TextAppearance.App.TextInputLayout" parent="@android:style/TextAppearance">
+    <style name="TextInputLayout" parent="@style/Theme.AppCompat">
         <item name="counterTextAppearance">@style/TextAppearance.App.TextInputLayout.Counter</item>
         <item name="errorTextAppearance">@style/TextAppearance.App.TextInputLayout.Error</item>
         <item name="counterOverflowTextAppearance">@style/TextAppearance.App.TextInputLayout.Error</item>
         <item name="passwordToggleTint">@color/colorTextDark</item>
     </style>
 
-    <!-- Error theme for TextInputLayout. -->
-    <style name="TextAppearance.App.TextInputLayout.Error" parent="@android:style/TextAppearance">
-        <item name="android:textColor">@color/colorError</item>
-    </style>
-
     <!-- Counter theme for TextInputLayout. -->
     <style name="TextAppearance.App.TextInputLayout.Counter" parent="@android:style/TextAppearance">
         <item name="android:textColor">@color/colorTextDark</item>
         <item name="android:textSize">@dimen/textInputLayoutCounterSize</item>
+    </style>
+
+    <!-- Error theme for TextInputLayout. -->
+    <style name="TextAppearance.App.TextInputLayout.Error" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/colorError</item>
     </style>
 
     <!-- Text appearance for EditText. -->

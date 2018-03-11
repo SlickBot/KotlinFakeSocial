@@ -15,10 +15,10 @@ class PersonServiceTest {
 
     @Before
     fun can_receive_query() {
-        query = ApiServices.personApi.getPerson(
-                results = 4,
-                seed = "1"
-        ).execute().body()
+        query = ApiServices.personApi
+                .getPerson(results = 4, seed = "1")
+                .execute()
+                .body()
     }
 
     @Test
