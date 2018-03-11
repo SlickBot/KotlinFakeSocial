@@ -46,8 +46,6 @@ Application is comprised of 7 core mobile screen archetypes:
 *0.2.0*
 - [Retrofit](http://square.github.io/retrofit/)
 *2.3.0*
-- [OkHttp](http://square.github.io/okhttp/)
-*2.7.5*
 - [Picasso](http://square.github.io/picasso/)
 *2.5.2*
 - [Picasso Transformations](https://github.com/wasabeef/picasso-transformations)
