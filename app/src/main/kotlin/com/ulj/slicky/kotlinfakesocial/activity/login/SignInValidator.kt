@@ -1,18 +1,17 @@
 package com.ulj.slicky.kotlinfakesocial.activity.login
 
-import android.support.design.widget.TextInputLayout
 import android.util.Patterns
 import android.view.View
-import com.ulj.slicky.kotlinfakesocial.R
 import com.ulj.slicky.kotlinfakesocial.string
+import kotlinx.android.synthetic.main.signin_fragment.view.*
 
 /**
  * Created by SlickyPC on 1.6.2017
  */
 internal class SignInValidator(view: View) {
 
-    private val emailLayout = view.findViewById<TextInputLayout>(R.id.signin_email_layout)
-    private val passwordLayout = view.findViewById<TextInputLayout>(R.id.signin_password_layout)
+    private val emailLayout = view.signin_email_layout
+    private val passwordLayout = view.signin_password_layout
 
     fun validate(): Boolean {
         emailLayout.error = null

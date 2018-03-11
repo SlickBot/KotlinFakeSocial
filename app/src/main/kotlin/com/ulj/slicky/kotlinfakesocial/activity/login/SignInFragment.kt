@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.EditText
 import com.ulj.slicky.kotlinfakesocial.*
 import com.ulj.slicky.kotlinfakesocial.activity.content.ContentActivity
+import kotlinx.android.synthetic.main.signin_fragment.view.*
 
 /**
  * Created by SlickyPC on 18.5.2017
@@ -33,8 +34,8 @@ class SignInFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return inflater.inflate(R.layout.signin_fragment, container, false).apply {
 
-            emailField = findViewById<EditText>(R.id.signin_email)
-            passwordField = findViewById<EditText>(R.id.signin_password)
+            emailField = signin_email
+            passwordField = signin_password
 
             passwordField.setOnEditorActionListener { _, actionId, _ ->
                 if (actionId == IME_ACTION_DONE) {
@@ -61,7 +62,7 @@ class SignInFragment : Fragment() {
         task?.cancel()
     }
 
-    internal fun trySignin() {
+    private fun trySignin() {
         val validator = SignInValidator(view ?: return)
         if (validator.validate())
             task = SignInTask(this, emailField.string, passwordField.string).apply { execute() }
@@ -70,15 +71,15 @@ class SignInFragment : Fragment() {
     }
 
     internal fun successSignin() {
-        activity.startActivity<ContentActivity>()
-        activity.finish()
+        requireActivity().startActivity<ContentActivity>()
+        requireActivity().finish()
     }
 
     internal fun failSignin(text: String, e: Exception?) {
-        activity.displayAlert(text + if (e != null) "\n" + e.localizedMessage else "")
+        requireActivity().displayAlert(text + if (e != null) "\n" + e.localizedMessage else "")
         shakeStage()
         Log.wtf(TAG, text, e)
     }
 
-    private fun shakeStage() = context.shake(emailField, passwordField)
+    private fun shakeStage() = requireContext().shake(emailField, passwordField)
 }

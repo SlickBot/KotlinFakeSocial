@@ -28,6 +28,10 @@
 
 -keep class retrofit.** { *; }
 -keep class com.ulj.slicky.kotlinfakesocial.model.** { *; }
+-dontwarn com.ulj.slicky.kotlinfakesocial.model.**
+
+#-keep class * implements android.os.Parcelable { public static final android.os.Parcelable$Creator *; }
+#-keep class org.parceler.Parceler$$Parcels
 
 -keepclasseswithmembers class * {
     @retrofit.http.* <methods>;

@@ -1,26 +1,30 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 ext {
-    support_version = '26.1.0'
-    constraint_version = '1.1.0-beta3'
+    support_version = '27.1.0'
+    constraint_version = '1.1.0-beta5'
     indicator_version = '0.2.0'
 
     retrofit_version = '2.3.0'
     picasso_version = '2.5.2'
     picasso_transform_version = '2.1.2'
+
+    junit_version = '4.12'
+    espresso_version = '3.0.1'
 }
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.2"
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
 
     defaultConfig {
         applicationId "com.ulj.slicky.kotlinfakesocial"
 
         minSdkVersion 19
-        targetSdkVersion 26
+        targetSdkVersion 27
 
         versionCode 1
         versionName "1.0"
@@ -83,8 +87,12 @@ dependencies {
     implementation "jp.wasabeef:picasso-transformations:$picasso_transform_version"
 
     // testing
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.0', {
+    testImplementation "junit:junit:$junit_version"
+    androidTestImplementation("com.android.support.test.espresso:espresso-core:$espresso_version", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+}
+
+androidExtensions {
+    experimental = true
 }

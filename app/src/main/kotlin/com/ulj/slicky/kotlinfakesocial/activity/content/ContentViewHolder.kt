@@ -4,14 +4,14 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import com.ulj.slicky.kotlinfakesocial.R
+import kotlinx.android.synthetic.main.content_item.view.*
 
 /**
  * Created by SlickyPC on 19.5.2017
  */
-internal class ContentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    val ownerImage: ImageView = itemView.findViewById<ImageView>(R.id.content_owner_image)
-    val ownerName: TextView = itemView.findViewById<TextView>(R.id.content_owner_name)
-    val postedAt: TextView = itemView.findViewById<TextView>(R.id.content_posted_at)
-    val content: TextView = itemView.findViewById<TextView>(R.id.content_content)
+internal class ContentViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    val ownerImage: ImageView = view.content_owner_image
+    val ownerName: TextView = view.content_owner_name
+    val postedAt: TextView = view.content_posted_at
+    val content: TextView = view.content_content
 }

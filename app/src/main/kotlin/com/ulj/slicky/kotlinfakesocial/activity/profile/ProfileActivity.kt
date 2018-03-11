@@ -2,12 +2,11 @@ package com.ulj.slicky.kotlinfakesocial.activity.profile
 
 import android.app.Activity
 import android.os.Bundle
+import com.squareup.picasso.Picasso
 import com.ulj.slicky.kotlinfakesocial.*
 import com.ulj.slicky.kotlinfakesocial.activity.BackableActivity
 import com.ulj.slicky.kotlinfakesocial.model.person.Person
-import com.squareup.picasso.Picasso
 import jp.wasabeef.picasso.transformations.CropCircleTransformation
-
 import kotlinx.android.synthetic.main.profile_activity.profile_birthday as birthdayField
 import kotlinx.android.synthetic.main.profile_activity.profile_cell as cellField
 import kotlinx.android.synthetic.main.profile_activity.profile_city as cityField
@@ -27,8 +26,8 @@ class ProfileActivity : BackableActivity() {
 
     companion object {
         private val TAG = ProfileActivity::class.java.canonicalName
-        private val KEY_PERSON = TAG + ".person"
-        private val KEY_OWNER = TAG + ".owner"
+        private val KEY_PERSON = "$TAG.person"
+        private val KEY_OWNER = "$TAG.owner"
 
         fun Activity.startOwnerProfile(owner: Person) {
             startActivity<ProfileActivity>(KEY_PERSON to owner, KEY_OWNER to true)

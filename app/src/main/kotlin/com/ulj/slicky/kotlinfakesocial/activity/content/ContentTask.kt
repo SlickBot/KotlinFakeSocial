@@ -12,7 +12,7 @@ import java.lang.ref.WeakReference
 internal class ContentTask(activity: ContentActivity)
     : ProgressDialogTask<List<Content>>(activity, "Loading Content...") {
 
-    val activityReference = WeakReference(activity)
+    private val activityReference = WeakReference(activity)
 
     @Throws(IOException::class)
     override fun backgroundTask() = FakeDBHandler.getContent()

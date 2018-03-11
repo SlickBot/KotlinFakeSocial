@@ -6,10 +6,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.EditText
 import com.ulj.slicky.kotlinfakesocial.*
 import com.ulj.slicky.kotlinfakesocial.activity.content.ContentActivity
+import kotlinx.android.synthetic.main.signup_fragment.view.*
 
 /**
  * Created by SlickyPC on 18.5.2017
@@ -31,15 +31,14 @@ class SignUpFragment : Fragment() {
     private var task: SignUpTask? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-
         return inflater.inflate(R.layout.signup_fragment, container, false).apply {
-            firstField = findViewById<EditText>(R.id.signup_first_name)
-            lastField = findViewById<EditText>(R.id.signup_last_name)
-            emailField = findViewById<EditText>(R.id.signup_email)
-            firstPasswordField = findViewById<EditText>(R.id.signup_first_password)
-            secondPasswordField = findViewById<EditText>(R.id.signup_second_password)
+            firstField = signup_first_name
+            lastField = signup_last_name
+            emailField = signup_email
+            firstPasswordField = signup_first_password
+            secondPasswordField = signup_second_password
 
-            val signUpButton = findViewById<Button>(R.id.signup_signup_button)
+            val signUpButton = signup_signup_button
             signUpButton.setOnClickListener {
                 trySignup()
             }
@@ -51,7 +50,7 @@ class SignUpFragment : Fragment() {
         task?.cancel()
     }
 
-    internal fun trySignup() {
+    private fun trySignup() {
         val validator = SignUpValidator(view ?: return)
         if (validator.validate()) {
             if (validator.acceptedLegalNotice) {
@@ -61,7 +60,7 @@ class SignUpFragment : Fragment() {
                         emailField.string,
                         firstPasswordField.string).apply { execute() }
             } else {
-                activity.displayAlert("You have to accept legal notice!")
+                requireActivity().displayAlert("You have to accept legal notice!")
             }
         } else {
             shakeStage()
@@ -69,17 +68,17 @@ class SignUpFragment : Fragment() {
     }
 
     internal fun successSignup() {
-        activity.startActivity<ContentActivity>()
-        activity.finish()
+        requireActivity().startActivity<ContentActivity>()
+        requireActivity().finish()
     }
 
     internal fun failSignup(text: String, e: Exception?) {
-        activity.displayAlert(text + if (e != null) "\n" + e.localizedMessage else "")
+        requireActivity().displayAlert(text + if (e != null) "\n" + e.localizedMessage else "")
         shakeStage()
         Log.wtf(TAG, text, e)
     }
 
     private fun shakeStage() {
-        context.shake(firstField, lastField, emailField, firstPasswordField, secondPasswordField)
+        requireContext().shake(firstField, lastField, emailField, firstPasswordField, secondPasswordField)
     }
 }

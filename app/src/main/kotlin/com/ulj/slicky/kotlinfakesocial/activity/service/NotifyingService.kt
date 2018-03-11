@@ -6,8 +6,9 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.os.Build.VERSION.SDK_INT
+import android.os.Build
 import android.os.Vibrator
+import android.support.annotation.RequiresApi
 import android.support.v4.app.NotificationCompat
 import com.ulj.slicky.kotlinfakesocial.FakePreferences
 import com.ulj.slicky.kotlinfakesocial.R
@@ -31,16 +32,8 @@ class NotifyingService : IntentService("NotifyingService") {
     override fun onCreate() {
         super.onCreate()
         prefs = FakePreferences(this)
-
-        if (SDK_INT >= 26) {
-            val notificationChannel = NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_LOW).apply {
-                enableLights(true)
-                enableVibration(true)
-                vibrationPattern = longArrayOf(500)
-            }
-            val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            manager.createNotificationChannel(notificationChannel)
-        }
+        if (Build.VERSION.SDK_INT >= 26)
+            createNotificationChannel()
     }
 
     override fun onHandleIntent(intent: Intent) {
@@ -53,18 +46,30 @@ class NotifyingService : IntentService("NotifyingService") {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun createNotificationChannel() {
+        val notificationChannel = NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_LOW).apply {
+            enableLights(true)
+            enableVibration(true)
+            vibrationPattern = longArrayOf(500)
+        }
+        val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        manager.createNotificationChannel(notificationChannel)
+    }
+
     private fun displayNotification() {
         prefs.isNotifyOn = false
 
         val callbackIntent = Intent(applicationContext, ContentActivity::class.java)
         val pendingIntent = PendingIntent.getActivity(applicationContext, 0, callbackIntent, 0)
 
-        val notification = NotificationCompat.Builder(this, "").apply {
+        val appName = getString(R.string.app_name)
+        val notification = NotificationCompat.Builder(this, CHANNEL_ID).apply {
             setSmallIcon(R.drawable.logo)
             setContentIntent(pendingIntent)
-            setContentTitle(getString(R.string.app_name))
+            setContentTitle(appName)
             setSubText("Time ran out!")
-            setContentText("You should open Kotlin Fake Social again!")
+            setContentText("You should open $appName again!")
             setAutoCancel(true)
         }.build()
 

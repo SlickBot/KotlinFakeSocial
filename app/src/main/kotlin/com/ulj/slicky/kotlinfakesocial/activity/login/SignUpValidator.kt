@@ -1,24 +1,22 @@
 package com.ulj.slicky.kotlinfakesocial.activity.login
 
-import android.support.design.widget.TextInputLayout
 import android.util.Patterns
 import android.view.View
-import android.widget.CheckBox
-import com.ulj.slicky.kotlinfakesocial.R
 import com.ulj.slicky.kotlinfakesocial.text
+import kotlinx.android.synthetic.main.signup_fragment.view.*
 
 /**
  * Created by SlickyPC on 1.6.2017
  */
 internal class SignUpValidator(view: View) {
 
-    private val firstLayout = view.findViewById<TextInputLayout>(R.id.signup_first_name_layout)
-    private val lastLayout = view.findViewById<TextInputLayout>(R.id.signup_last_name_layout)
-    private val emailLayout = view.findViewById<TextInputLayout>(R.id.signup_email_layout)
-    private val firstPasswordLayout = view.findViewById<TextInputLayout>(R.id.signup_first_password_layout)
-    private val secondPasswordLayout = view.findViewById<TextInputLayout>(R.id.signup_second_password_layout)
+    private val firstLayout = view.signup_first_name_layout
+    private val lastLayout = view.signup_last_name_layout
+    private val emailLayout = view.signup_email_layout
+    private val firstPasswordLayout = view.signup_first_password_layout
+    private val secondPasswordLayout = view.signup_second_password_layout
 
-    private val legalCheckBox = view.findViewById<CheckBox>(R.id.signup_legal_checkbox)
+    private val legalCheckBox = view.signup_legal_checkbox
 
     internal val acceptedLegalNotice: Boolean
         get() = legalCheckBox.isChecked

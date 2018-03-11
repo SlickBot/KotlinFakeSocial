@@ -13,9 +13,9 @@ internal class LoginAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
     private val signupFragment = SignUpFragment.newInstance()
 
     override fun getItem(position: Int): Fragment {
-        when (position) {
-            1 -> return signupFragment
-            else -> return signinFragment
+        return when (position) {
+            1 -> signupFragment
+            else -> signinFragment
         }
     }
 

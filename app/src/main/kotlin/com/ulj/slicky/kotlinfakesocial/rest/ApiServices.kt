@@ -12,8 +12,8 @@ import java.util.concurrent.TimeUnit
  */
 object ApiServices {
 
-    val PERSON_URL = "https://randomuser.me/"
-    val CONTENT_URL = "http://watchout4snakes.com/wo4snakes/"
+    const val PERSON_URL = "https://randomuser.me/"
+    const val CONTENT_URL = "http://watchout4snakes.com/wo4snakes/"
 
     private val okHttpClient = OkHttpClient.Builder()
             .readTimeout(30, TimeUnit.SECONDS)

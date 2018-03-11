@@ -26,14 +26,14 @@ abstract class ProgressDialogTask<T>(context: Context, message: String) : AsyncT
     }
 
     override fun doInBackground(vararg voids: Void): T? {
-        try {
-            return backgroundTask()
+        return try {
+            backgroundTask()
         } catch (e: Exception) {
             if (!isCancelled) {
                 fail(e)
                 cancel(true)
             }
-            return null
+            null
         }
     }
 

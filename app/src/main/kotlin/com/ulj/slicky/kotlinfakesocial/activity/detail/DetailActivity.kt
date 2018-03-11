@@ -7,12 +7,12 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import com.squareup.picasso.Picasso
 import com.ulj.slicky.kotlinfakesocial.*
 import com.ulj.slicky.kotlinfakesocial.activity.BackableActivity
 import com.ulj.slicky.kotlinfakesocial.activity.profile.ProfileActivity
 import com.ulj.slicky.kotlinfakesocial.activity.profile.ProfileActivity.Companion.startFriendProfile
 import com.ulj.slicky.kotlinfakesocial.model.content.Content
-import com.squareup.picasso.Picasso
 import jp.wasabeef.picasso.transformations.CropCircleTransformation
 import java.util.*
 import kotlinx.android.synthetic.main.detail_activity.detail_image as imageView
@@ -28,7 +28,7 @@ class DetailActivity : BackableActivity() {
 
     companion object {
         private val TAG = ProfileActivity::class.java.canonicalName
-        private val KEY_CONTENT = TAG + ".contents"
+        private val KEY_CONTENT = "$TAG.contents"
 
         fun Activity.startDetail(content: Content) {
             startActivity<DetailActivity>(KEY_CONTENT to content)

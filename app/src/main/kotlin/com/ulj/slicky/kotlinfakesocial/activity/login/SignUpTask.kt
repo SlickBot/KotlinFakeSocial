@@ -13,7 +13,7 @@ internal class SignUpTask(private val fragment: SignUpFragment,
                           private val last: String,
                           private val email: String,
                           private val password: String)
-    : ProgressDialogTask<Boolean>(fragment.context, "Signing Up...") {
+    : ProgressDialogTask<Boolean>(fragment.requireContext(), "Signing Up...") {
 
     @Throws(IOException::class)
     override fun backgroundTask() = FakeDBHandler.signup(first, last, email, password)

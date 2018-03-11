@@ -24,6 +24,6 @@ class AboutActivity : BackableActivity() {
 
     @Suppress("UNUSED_PARAMETER")
     fun onWatchOutClick(view: View) {
-        startBrowseActivity(ApiServices.PERSON_URL)
+        startBrowseActivity(ApiServices.CONTENT_URL)
     }
 }

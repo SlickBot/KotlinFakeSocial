@@ -4,13 +4,13 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import com.ulj.slicky.kotlinfakesocial.R
+import kotlinx.android.synthetic.main.friends_item.view.*
 
 /**
  * Created by SlickyPC on 24.5.2017
  */
-internal class FriendsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    val friendImage: ImageView = itemView.findViewById<ImageView>(R.id.friend_image)
-    val friendName: TextView = itemView.findViewById<TextView>(R.id.friend_name)
-    val friendInfo: TextView = itemView.findViewById<TextView>(R.id.friend_info)
+internal class FriendsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    val friendImage: ImageView = view.friend_image
+    val friendName: TextView = view.friend_name
+    val friendInfo: TextView = view.friend_info
 }
