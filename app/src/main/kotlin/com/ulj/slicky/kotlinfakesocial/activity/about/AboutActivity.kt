@@ -26,4 +26,5 @@ class AboutActivity : BackableActivity() {
     fun onWatchOutClick(view: View) {
         startBrowseActivity(ApiServices.CONTENT_URL)
     }
+
 }

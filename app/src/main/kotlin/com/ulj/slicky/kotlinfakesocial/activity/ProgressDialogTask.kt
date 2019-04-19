@@ -57,4 +57,5 @@ abstract class ProgressDialogTask<T>(context: Context, message: String) : AsyncT
     abstract fun success(result: T) : Unit?
 
     abstract fun fail(e: Exception) : Unit?
+
 }

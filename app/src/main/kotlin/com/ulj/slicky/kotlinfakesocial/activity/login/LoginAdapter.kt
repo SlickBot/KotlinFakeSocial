@@ -20,4 +20,5 @@ internal class LoginAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
     }
 
     override fun getCount() = 2
+
 }

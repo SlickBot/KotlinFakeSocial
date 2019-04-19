@@ -10,13 +10,18 @@ import retrofit2.http.Query
  */
 interface PersonApi {
 
-    // page=3&results=10&seed=abc
-    // nat=us,dk,fr,gb
-    // AU, BR, CA, CH, DE, DK, ES, FI, FR, GB, IE, IR, NL, NZ, TR, US
+    // results=[int]
+    // gender=[male|female]
+    // page=[int]
+    // seed=[string]
+    // nat=[AU|BR|CA|CH|DE|DK|ES|FI|FR|GB|IE|IR|NL|NZ|TR|US|...]
     @GET("/api")
-    fun getPerson(@Query("results") results: Int,
-                  @Query("gender") gender: String? = null,
-                  @Query("seed") seed: String? = null,
-                  @Query("nat") nationality: String? = null,
-                  @Query("page") page: String? = null): Call<PersonQuery>
+    fun getPerson(
+            @Query("results") results: Int,
+            @Query("gender") gender: String? = null,
+            @Query("seed") seed: String? = null,
+            @Query("nat") nationality: String? = null,
+            @Query("page") page: String? = null
+    ): Call<PersonQuery>
+
 }

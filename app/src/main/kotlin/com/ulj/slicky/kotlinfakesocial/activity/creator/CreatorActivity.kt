@@ -41,7 +41,7 @@ class CreatorActivity : BackableActivity() {
     internal fun onCreatingSuccess() {
         displayAlert("Successfully uploaded new Content!") {
             setCancelable(false)
-            setPositiveButton("Cool!", { _, _ -> finish() })
+            setPositiveButton("Cool!") { _, _ -> finish() }
         }
     }
 
@@ -49,4 +49,5 @@ class CreatorActivity : BackableActivity() {
         displayAlert(text + if (e != null) "\n" + e.localizedMessage else "")
         Log.wtf(TAG, text, e)
     }
+
 }

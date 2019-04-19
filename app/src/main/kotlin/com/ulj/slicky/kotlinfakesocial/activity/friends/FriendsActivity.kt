@@ -64,4 +64,5 @@ class FriendsActivity : BackableActivity() {
         startActivity<LoginActivity>()
         finish()
     }
+
 }

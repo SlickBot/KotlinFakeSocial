@@ -82,4 +82,5 @@ class SignInFragment : Fragment() {
     }
 
     private fun shakeStage() = requireContext().shake(emailField, passwordField)
+
 }

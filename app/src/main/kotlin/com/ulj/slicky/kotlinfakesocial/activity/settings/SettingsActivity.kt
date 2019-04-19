@@ -60,4 +60,5 @@ class SettingsActivity : BackableActivity() {
             durationField.isEnabled = !isNotifyRandom
         }
     }
+
 }

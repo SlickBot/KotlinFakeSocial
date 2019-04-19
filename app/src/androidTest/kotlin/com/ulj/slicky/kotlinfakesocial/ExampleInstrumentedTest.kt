@@ -8,7 +8,6 @@ import org.junit.runner.RunWith
 
 /**
  * Instrumentation test, which will execute on an Android device.
-
  * @see [Testing documentation](http://d.android.com/tools/testing)
  */
 @RunWith(AndroidJUnit4::class)
@@ -18,7 +17,7 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
-
         assertEquals("com.slicky.ulj.kotlinfakesocial", appContext.packageName)
     }
+
 }

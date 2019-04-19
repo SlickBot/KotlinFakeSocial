@@ -66,10 +66,11 @@ class NotifyingService : IntentService("NotifyingService") {
         val appName = getString(R.string.app_name)
         val notification = NotificationCompat.Builder(this, CHANNEL_ID).apply {
             setSmallIcon(R.drawable.logo)
-            setContentIntent(pendingIntent)
             setContentTitle(appName)
-            setSubText("Time ran out!")
             setContentText("You should open $appName again!")
+//            setSubText("Time ran out!")
+
+            setContentIntent(pendingIntent)
             setAutoCancel(true)
         }.build()
 
@@ -80,4 +81,5 @@ class NotifyingService : IntentService("NotifyingService") {
         @Suppress("DEPRECATION")
         vibrator.vibrate(500)
     }
+
 }

@@ -10,8 +10,9 @@ import java.lang.ref.WeakReference
 /**
  * Created by SlickyPC on 23.5.2017
  */
-internal class UserTask(activity: ContentActivity)
-    : ProgressDialogTask<Person>(activity, "Loading User...") {
+internal class UserTask(
+        activity: ContentActivity
+) : ProgressDialogTask<Person>(activity, "Loading User...") {
 
     private val activityReference = WeakReference(activity)
 
@@ -21,4 +22,5 @@ internal class UserTask(activity: ContentActivity)
     override fun success(result: Person) = activityReference.get()?.startOwnerProfile(result)
 
     override fun fail(e: Exception) = activityReference.get()?.handleError("Could not load User data!", e)
+
 }

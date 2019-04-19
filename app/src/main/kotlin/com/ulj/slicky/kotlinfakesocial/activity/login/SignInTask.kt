@@ -8,10 +8,11 @@ import java.io.IOException
 /**
  * Created by SlickyPC on 21.5.2017
  */
-internal class SignInTask(private val fragment: SignInFragment,
-                          private val email: String,
-                          private val password: String)
-    : ProgressDialogTask<Boolean>(fragment.requireContext(), "Signing In...") {
+internal class SignInTask(
+        private val fragment: SignInFragment,
+        private val email: String,
+        private val password: String
+) : ProgressDialogTask<Boolean>(fragment.requireContext(), "Signing In...") {
 
     @Throws(IOException::class)
     override fun backgroundTask(): Boolean = FakeDBHandler.signin(email, password)
@@ -24,4 +25,5 @@ internal class SignInTask(private val fragment: SignInFragment,
     }
 
     override fun fail(e: Exception) = fragment.failSignin("Could not Sign In!", e)
+
 }

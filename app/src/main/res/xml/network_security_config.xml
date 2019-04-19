@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- because watchout4snakes (random sentence api) does not use https we have to allow cleartext -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">watchout4snakes.com</domain>
+    </domain-config>
+</network-security-config>

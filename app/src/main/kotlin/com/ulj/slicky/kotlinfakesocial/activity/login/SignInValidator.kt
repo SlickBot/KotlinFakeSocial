@@ -52,4 +52,5 @@ internal class SignInValidator(view: View) {
 
         return true
     }
+
 }

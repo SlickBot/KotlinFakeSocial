@@ -81,4 +81,5 @@ class SignUpFragment : Fragment() {
     private fun shakeStage() {
         requireContext().shake(firstField, lastField, emailField, firstPasswordField, secondPasswordField)
     }
+
 }

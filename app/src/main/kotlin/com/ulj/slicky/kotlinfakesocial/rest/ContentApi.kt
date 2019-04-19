@@ -12,6 +12,9 @@ interface ContentApi {
 
     @FormUrlEncoded
     @POST("/Random/RandomParagraph")
-    fun getContent(@Field("Subject1") subject1: String = "",
-                   @Field("Subject2") subject2: String = ""): Call<String>
+    fun getContent(
+            @Field("Subject1") subject1: String = "",
+            @Field("Subject2") subject2: String = ""
+    ): Call<String>
+
 }

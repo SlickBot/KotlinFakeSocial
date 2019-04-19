@@ -1,8 +1,5 @@
 #!/usr/bin/env sh
 
-LC_NUMERIC="en_US.UTF-8"
-
-
 ##############################################################################
 ##
 ##  Gradle start up script for UN*X

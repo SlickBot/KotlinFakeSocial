@@ -76,15 +76,6 @@ fun Activity.color(id: Int) = ContextCompat.getColor(this, id)
 // Context.getDrawable requires min API 21
 fun Context.drawable(id: Int): Drawable = ContextCompat.getDrawable(this, id)!!
 
-//inline fun <reified T : View> Activity.findView(id: Int) = lazy {
-//    findViewById(id)?.let {
-//        when (it) {
-//            is T -> it
-//            else -> throw TypeCastException("Could not cast View to ${T::class}")
-//        }
-//    } ?: throw IllegalArgumentException("Could not find ${T::class} with id = $id")
-//}
-
 /**
  * Inspired (copied) from Anko org.jetbrains.anko.internals
  */

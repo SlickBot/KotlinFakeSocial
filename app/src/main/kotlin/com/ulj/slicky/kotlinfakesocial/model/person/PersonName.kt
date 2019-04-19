@@ -7,6 +7,8 @@ import kotlinx.android.parcel.Parcelize
  * Created by SlickyPC on 17.5.2017
  */
 @Parcelize
-data class PersonName(val title: String,
-                      val first: String,
-                      val last: String) : Parcelable
+data class PersonName(
+        val title: String,
+        val first: String,
+        val last: String
+) : Parcelable

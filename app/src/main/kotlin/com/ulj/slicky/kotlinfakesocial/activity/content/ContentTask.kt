@@ -9,8 +9,9 @@ import java.lang.ref.WeakReference
 /**
  * Created by SlickyPC on 21.5.2017
  */
-internal class ContentTask(activity: ContentActivity)
-    : ProgressDialogTask<List<Content>>(activity, "Loading Content...") {
+internal class ContentTask(
+        activity: ContentActivity
+) : ProgressDialogTask<List<Content>>(activity, "Loading Content...") {
 
     private val activityReference = WeakReference(activity)
 
@@ -20,4 +21,5 @@ internal class ContentTask(activity: ContentActivity)
     override fun success(result: List<Content>) = activityReference.get()?.setContent(result)
 
     override fun fail(e: Exception) = activityReference.get()?.handleError("Could not retrieve Content!", e)
+
 }

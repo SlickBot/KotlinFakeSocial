@@ -90,4 +90,5 @@ internal class SignUpValidator(view: View) {
 
         return true
     }
+
 }

@@ -30,7 +30,7 @@ object ApiServices {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(okHttpClient)
                 .build()
-                .create<PersonApi>(PersonApi::class.java)
+                .create(PersonApi::class.java)
     }
 
     val contentApi: ContentApi by lazy {
@@ -39,6 +39,7 @@ object ApiServices {
                 .addConverterFactory(StringConverter())
                 .client(okHttpClient)
                 .build()
-                .create<ContentApi>(ContentApi::class.java)
+                .create(ContentApi::class.java)
     }
+
 }

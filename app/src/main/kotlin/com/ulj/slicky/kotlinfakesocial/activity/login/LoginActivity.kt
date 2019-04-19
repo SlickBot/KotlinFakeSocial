@@ -43,4 +43,5 @@ class LoginActivity : AppCompatActivity() {
     fun onLostDetailsClick(view: View) {
         Toast.makeText(this, "Well, that sucks.", Toast.LENGTH_SHORT).show()
     }
+
 }

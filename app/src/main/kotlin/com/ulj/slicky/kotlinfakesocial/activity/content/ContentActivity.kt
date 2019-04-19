@@ -119,8 +119,9 @@ class ContentActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
     internal fun handleError(text: String, e: Exception?) {
         displayAlert(text + if (e != null) "\n" + e.localizedMessage else "") {
             setCancelable(false)
-            setPositiveButton("Sign Out", { _, _ -> signOut() })
+            setPositiveButton("Sign Out") { _, _ -> signOut() }
         }
         Log.wtf(TAG, text, e)
     }
+
 }

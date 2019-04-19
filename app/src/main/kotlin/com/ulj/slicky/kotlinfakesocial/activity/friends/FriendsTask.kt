@@ -9,7 +9,8 @@ import java.lang.ref.WeakReference
 /**
  * Created by SlickyPC on 24.5.2017
  */
-internal class FriendsTask(activity: FriendsActivity
+internal class FriendsTask(
+        activity: FriendsActivity
 ) : ProgressDialogTask<List<Person>>(activity, "Loading Friends...") {
 
     private val activityReference = WeakReference(activity)
@@ -20,4 +21,5 @@ internal class FriendsTask(activity: FriendsActivity
     override fun success(result: List<Person>) = activityReference.get()?.setFriends(result)
 
     override fun fail(e: Exception) = activityReference.get()?.onFail("Could not retrieve Friends!", e)
+
 }

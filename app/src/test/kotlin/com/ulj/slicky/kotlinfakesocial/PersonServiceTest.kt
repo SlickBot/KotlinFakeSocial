@@ -16,7 +16,7 @@ class PersonServiceTest {
     @Before
     fun can_receive_query() {
         query = ApiServices.personApi
-                .getPerson(results = 4, seed = "1")
+                .getPerson(results = 5, seed = "1")
                 .execute()
                 .body()
     }
@@ -31,4 +31,5 @@ class PersonServiceTest {
         assertNotNull("Query results should not be null.", query!!.results)
         assertEquals("Query results should contain 5 items.", 5, query!!.results.size.toLong())
     }
+
 }

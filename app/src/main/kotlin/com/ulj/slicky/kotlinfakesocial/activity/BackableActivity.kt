@@ -28,4 +28,5 @@ open class BackableActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
 }

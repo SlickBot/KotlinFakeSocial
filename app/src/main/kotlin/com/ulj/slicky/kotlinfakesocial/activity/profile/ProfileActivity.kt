@@ -42,8 +42,8 @@ class ProfileActivity : BackableActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.profile_activity)
 
-        val extras = intent.extras
-        val person = extras.getParcelable<Person>(KEY_PERSON)
+        val extras = intent.extras ?: return
+        val person = extras.getParcelable<Person>(KEY_PERSON) ?: return
         val isOwner = extras.getBoolean(KEY_OWNER)
 
         title = if (isOwner) "Your Profile" else person.fullName()
@@ -59,8 +59,8 @@ class ProfileActivity : BackableActivity() {
             emailField.text = email
             cellField.text = cell
             phoneField.text = phone
-            birthdayField.text = dob.formattedWithTime()
-            registeredField.text = registered.formattedWithTime()
+            birthdayField.text = dob.date.formattedWithTime()
+            registeredField.text = registered.date.formattedWithTime()
             natField.text = nat.codeToCountry()
 
             with(location) {

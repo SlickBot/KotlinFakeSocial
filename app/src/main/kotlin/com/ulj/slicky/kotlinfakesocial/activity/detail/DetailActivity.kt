@@ -43,15 +43,16 @@ class DetailActivity : BackableActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.detail_activity)
 
-        val extras = intent.extras
-        content = extras.getParcelable(KEY_CONTENT)
+        val extras = intent.extras ?: return
+        content = extras.getParcelable(KEY_CONTENT) ?: return
 
         with(content) {
             val imageUrl = owner.picture.large
             val name = owner.fullName()
             val postedAtDate = Date(postedAt).formattedWithTime()
 
-            Picasso.with(this@DetailActivity).load(imageUrl)
+            Picasso.with(this@DetailActivity)
+                    .load(imageUrl)
                     .placeholder(R.drawable.ic_user)
                     .transform(CropCircleTransformation())
                     .into(imageView)
@@ -97,4 +98,5 @@ class DetailActivity : BackableActivity() {
             setNegativeButton("No") { dialog, _ -> dialog.dismiss() }
         }
     }
+
 }

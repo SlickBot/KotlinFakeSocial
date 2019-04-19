@@ -15,9 +15,10 @@ import java.util.*
 /**
  * Created by SlickyPC on 19.5.2017
  */
-internal class ContentAdapter(private val activity: ContentActivity,
-                              private val recycler: RecyclerView)
-    : RecyclerView.Adapter<ContentViewHolder>() {
+internal class ContentAdapter(
+        private val activity: ContentActivity,
+        private val recycler: RecyclerView
+) : RecyclerView.Adapter<ContentViewHolder>() {
 
     internal var contents = listOf<Content>()
         set(value) {
@@ -57,4 +58,5 @@ internal class ContentAdapter(private val activity: ContentActivity,
     }
 
     override fun getItemCount() = contents.size
+
 }
