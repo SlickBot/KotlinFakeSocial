@@ -33,20 +33,20 @@ Application is comprised of 7 core mobile screen archetypes:
 
 ### Dependencies
 - [Kotlin and Kotlin Extensions](https://github.com/JetBrains/kotlin)
-*1.2.30*
+*1.3.30*
 - [Gradle Build Tools](https://developer.android.com/studio/releases/gradle-plugin.html)
-*3.0.1*
+*3.4.0*
 - [Android Build Tools](https://developer.android.com/studio/releases/build-tools.html)
-*27.0.3*
+*28.0.0*
 - [Android Support](https://developer.android.com/topic/libraries/support-library/index.html)
-*27.1.0*
+*28.0.0*
 - [Android Constraint Layout](https://developer.android.com/reference/android/support/constraint/ConstraintLayout.html)
-*1.1.0-beta5*
+*1.1.3*
 - [Page Indicator View](https://github.com/romandanylyk/PageIndicatorView/)
-*0.2.0*
+*1.0.2*
 - [Retrofit](http://square.github.io/retrofit/)
-*2.3.0*
+*2.5.0*
 - [Picasso](http://square.github.io/picasso/)
 *2.5.2*
 - [Picasso Transformations](https://github.com/wasabeef/picasso-transformations)
-*2.1.2*
+*2.2.1*
