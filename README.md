@@ -10,6 +10,9 @@ Project is separated into multiple modules.
 GitCompare is used to compare languages used on Github.
 - GitCompare ([HERE](https://github.com/SlickBot/GitCompare/))
 
+BuildCompare is used to compare build durations.
+- BuildCompare ([HERE](https://github.com/SlickBot/BuildCompare/))
+
 AppiumCompare is used to compare applications.
 - AppiumCompare ([HERE](https://github.com/SlickBot/AppiumCompare/))
 
