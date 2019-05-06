@@ -145,3 +145,7 @@ fun Activity.displayAlert(message: String? = null, op: (AlertDialog.Builder.() -
         }.show()
     }
 }
+
+fun isAppiumTest() = BuildConfig.BUILD_VERSION == "APPIUM"
+
+fun isDebug() = BuildConfig.BUILD_VERSION == "DEBUG"

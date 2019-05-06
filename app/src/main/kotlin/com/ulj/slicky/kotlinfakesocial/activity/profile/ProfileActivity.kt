@@ -49,11 +49,19 @@ class ProfileActivity : BackableActivity() {
         title = if (isOwner) "Your Profile" else person.fullName()
 
         with(person) {
-            Picasso.with(this@ProfileActivity)
-                    .load(picture.large)
-                    .placeholder(R.drawable.ic_user)
-                    .transform(CropCircleTransformation())
-                    .into(iconField)
+            if (isAppiumTest()) {
+                Picasso.with(this@ProfileActivity)
+                        .load(R.drawable.test_img)
+                        .placeholder(R.drawable.ic_user)
+                        .transform(CropCircleTransformation())
+                        .into(iconField)
+            } else {
+                Picasso.with(this@ProfileActivity)
+                        .load(picture.large)
+                        .placeholder(R.drawable.ic_user)
+                        .transform(CropCircleTransformation())
+                        .into(iconField)
+            }
 
             nameField.text = fullNameWithTitle()
             emailField.text = email

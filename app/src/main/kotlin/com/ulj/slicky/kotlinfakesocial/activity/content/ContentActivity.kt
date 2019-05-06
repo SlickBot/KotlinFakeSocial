@@ -88,7 +88,6 @@ class ContentActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
             R.id.nav_share -> startShareActivity("Fakest Social Network!", "This app is really FAKE!")
             R.id.nav_logout -> signOut()
         }
-
         drawer.closeDrawers()
         return false
     }
@@ -111,8 +110,8 @@ class ContentActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
     }
 
     private fun signOut() {
-        startActivity<LoginActivity>()
         FakeDBHandler.signout()
+        startActivity<LoginActivity>()
         finish()
     }
 

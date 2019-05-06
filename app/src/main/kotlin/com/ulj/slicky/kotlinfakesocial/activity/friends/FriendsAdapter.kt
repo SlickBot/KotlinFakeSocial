@@ -9,6 +9,7 @@ import com.ulj.slicky.kotlinfakesocial.fullName
 import com.ulj.slicky.kotlinfakesocial.info
 import com.ulj.slicky.kotlinfakesocial.model.person.Person
 import com.squareup.picasso.Picasso
+import com.ulj.slicky.kotlinfakesocial.isAppiumTest
 import jp.wasabeef.picasso.transformations.CropCircleTransformation
 
 /**
@@ -45,11 +46,19 @@ internal class FriendsAdapter(
             friendName.text = friend.fullName()
             friendInfo.text = friend.info()
 
-            Picasso.with(activity)
-                    .load(friend.picture.medium)
-                    .placeholder(R.drawable.ic_user)
-                    .transform(CropCircleTransformation())
-                    .into(friendImage)
+            if (isAppiumTest()) {
+                Picasso.with(activity)
+                        .load(R.drawable.test_img)
+                        .placeholder(R.drawable.ic_user)
+                        .transform(CropCircleTransformation())
+                        .into(friendImage)
+            } else {
+                Picasso.with(activity)
+                        .load(friend.picture.medium)
+                        .placeholder(R.drawable.ic_user)
+                        .transform(CropCircleTransformation())
+                        .into(friendImage)
+            }
         }
     }
 

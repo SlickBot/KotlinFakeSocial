@@ -51,11 +51,17 @@ class DetailActivity : BackableActivity() {
             val name = owner.fullName()
             val postedAtDate = Date(postedAt).formattedWithTime()
 
-            Picasso.with(this@DetailActivity)
-                    .load(imageUrl)
-                    .placeholder(R.drawable.ic_user)
-                    .transform(CropCircleTransformation())
-                    .into(imageView)
+            if (isAppiumTest()) {
+                Picasso.with(this@DetailActivity).load(R.drawable.test_img)
+                        .placeholder(R.drawable.ic_user)
+                        .transform(CropCircleTransformation())
+                        .into(imageView)
+            } else {
+                Picasso.with(this@DetailActivity).load(imageUrl)
+                        .placeholder(R.drawable.ic_user)
+                        .transform(CropCircleTransformation())
+                        .into(imageView)
+            }
 
             nameField.text = name
             @SuppressLint("SetTextI18n")

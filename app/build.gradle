@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
+//apply plugin: 'kotlin-kapt'
 
 ext {
     support_version = '28.0.0'
@@ -33,24 +33,43 @@ android {
     }
 
     signingConfigs {
+        appium {
+            storeFile file(APPIUM_STORE_FILE)
+            storePassword APPIUM_STORE_PASSWORD
+            keyAlias APPIUM_KEY_ALIAS
+            keyPassword APPIUM_KEY_PASSWORD
+        }
         release {
-//            storeFile file(RELEASE_STORE_FILE)
-//            storePassword RELEASE_STORE_PASSWORD
-//            keyAlias RELEASE_KEY_ALIAS
-//            keyPassword RELEASE_KEY_PASSWORD
+            storeFile file(RELEASE_STORE_FILE)
+            storePassword RELEASE_STORE_PASSWORD
+            keyAlias RELEASE_KEY_ALIAS
+            keyPassword RELEASE_KEY_PASSWORD
         }
     }
 
     buildTypes {
         debug {
+            debuggable = true
             minifyEnabled false
             applicationIdSuffix '.debug'
             versionNameSuffix '-DEBUG'
+            buildConfigField 'String', 'BUILD_VERSION', "\"DEBUG\""
+        }
+        appium {
+            debuggable = false
+            minifyEnabled true
+            signingConfig signingConfigs.appium
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            applicationIdSuffix '.appium'
+            versionNameSuffix '-APPIUM'
+            buildConfigField 'String', 'BUILD_VERSION', "\"APPIUM\""
         }
         release {
+            debuggable = false
             minifyEnabled true
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', 'BUILD_VERSION', "\"RELEASE\""
         }
     }
 
@@ -58,6 +77,17 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
         test.java.srcDirs += 'src/test/kotlin'
         androidTest.java.srcDirs += 'src/androidTest/kotlin'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    packagingOptions{
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
     }
 }
 
@@ -92,6 +122,6 @@ dependencies {
     })
 }
 
-androidExtensions {
-    experimental = true
-}
+//androidExtensions {
+//    experimental = true
+//}

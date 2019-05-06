@@ -1,8 +1,11 @@
 package com.ulj.slicky.kotlinfakesocial.db
 
+import com.ulj.slicky.kotlinfakesocial.BuildConfig
 import com.ulj.slicky.kotlinfakesocial.model.content.Content
 import com.ulj.slicky.kotlinfakesocial.model.person.Person
+import com.ulj.slicky.kotlinfakesocial.provider.Provider
 import com.ulj.slicky.kotlinfakesocial.rest.ApiServices
+
 import java.io.IOException
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -42,10 +45,12 @@ object FakeDBHandler : DBHandler {
     }
 
     @Throws(IOException::class)
-    override fun signup(firstName: String,
-                        lastName: String,
-                        email: String,
-                        password: String): Boolean {
+    override fun signup(
+            firstName: String,
+            lastName: String,
+            email: String,
+            password: String
+    ): Boolean {
         // Simulate network work.
         simulateWork()
         // TODO: This should be changed.
@@ -110,6 +115,18 @@ object FakeDBHandler : DBHandler {
 
     @Throws(IOException::class)
     private fun findCandidates(): List<Person> {
+        return if (BuildConfig.BUILD_VERSION == "APPIUM") {
+            findCandidatesProvider()
+        } else {
+            findCandidatesApi()
+        }
+    }
+
+    private fun findCandidatesProvider(): List<Person> {
+        return Provider.getPersons(26)
+    }
+
+    private fun findCandidatesApi(): List<Person> {
         // Blocking api request for new random persons.
         val query = ApiServices.personApi
                 .getPerson(50)
@@ -127,14 +144,9 @@ object FakeDBHandler : DBHandler {
 
     @Throws(IOException::class)
     private fun generateContent() = mutableListOf<Content>().also { list ->
-
         friendList?.let { friends ->
             repeat(10) {
-
-                // Blocking api request for new Content text.
-                val query = ApiServices.contentApi
-                        .getContent()
-                        .execute().body() ?: throw IOException("Did not receive Content (is null)")
+                val text = findContent()
 
                 // Pick random Content owner.
                 val randy = friends[random.nextInt(friends.size)]
@@ -149,13 +161,40 @@ object FakeDBHandler : DBHandler {
                 val timePassed = random.nextInt(1000 * 60 * 60 * 24)
 
                 // Create new Content and add it to list.
-                val content = Content(random.nextLong(), randy, query, lastPostTime - timePassed)
+                val content = Content(random.nextLong(), randy, text, lastPostTime - timePassed)
                 list.add(content)
             }
         }
     }
 
-    private fun simulateWork() {
-        TimeUnit.SECONDS.sleep(1)
+    @Throws(IOException::class)
+    private fun findContent(): String {
+        return if (BuildConfig.BUILD_VERSION == "APPIUM") {
+            findContentProvider()
+        } else {
+            findContentApi()
+        }
     }
+
+    @Throws(IOException::class)
+    private fun findContentApi(): String {
+        // Blocking api request for new Content text.
+
+        return ApiServices.contentApi
+                .getContent("", "")
+                .execute()
+                .body() ?: throw IOException("Did not receive Content (is null)")
+    }
+
+    private fun findContentProvider(): String {
+        return Provider.getContent()
+    }
+
+
+    private fun simulateWork() {
+        if (BuildConfig.BUILD_VERSION == "APPIUM") {
+            TimeUnit.SECONDS.sleep(1)
+        }
+    }
+
 }

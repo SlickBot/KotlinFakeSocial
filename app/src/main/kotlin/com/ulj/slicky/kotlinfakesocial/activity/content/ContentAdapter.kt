@@ -9,6 +9,7 @@ import com.ulj.slicky.kotlinfakesocial.formattedWithTime
 import com.ulj.slicky.kotlinfakesocial.fullName
 import com.ulj.slicky.kotlinfakesocial.model.content.Content
 import com.squareup.picasso.Picasso
+import com.ulj.slicky.kotlinfakesocial.isAppiumTest
 import jp.wasabeef.picasso.transformations.CropCircleTransformation
 import java.util.*
 
@@ -49,11 +50,19 @@ internal class ContentAdapter(
             postedAt.text = date.formattedWithTime()
             content.text = newContent.text
 
-            Picasso.with(activity)
-                    .load(owner.picture.medium)
-                    .placeholder(R.drawable.ic_user)
-                    .transform(CropCircleTransformation())
-                    .into(ownerImage)
+            if (isAppiumTest()) {
+                Picasso.with(activity)
+                        .load(R.drawable.test_img)
+                        .placeholder(R.drawable.ic_user)
+                        .transform(CropCircleTransformation())
+                        .into(ownerImage)
+            } else {
+                Picasso.with(activity)
+                        .load(owner.picture.medium)
+                        .placeholder(R.drawable.ic_user)
+                        .transform(CropCircleTransformation())
+                        .into(ownerImage)
+            }
         }
     }
 

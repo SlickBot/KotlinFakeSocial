@@ -1,5 +1,5 @@
 # Fake Social Project
-Fake Social Project is part of my UNI thesis about comparing Android developement with Java versus Android developement with Kotlin.
+Fake Social Project is part of my UNI thesis about comparing Android development with Java versus Android development with Kotlin.
 
 ### Modules
 Project is separated into multiple modules.
@@ -16,7 +16,7 @@ AppiumCompare is used to compare applications.
 ## Kotlin Fake Social
 <img src="app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" height="200" alt="Logo"/>
 
-This is a Anko version of Fake Social. Application is using services ([randomuser.me](https://randomuser.me/)) and ([watchout4snakes.com](http://watchout4snakes.com/wo4snakes/)) to create fake profiles and contents.
+This is a Kotlin version of Fake Social. Application is using services ([randomuser.me](https://randomuser.me/)) and ([watchout4snakes.com](http://watchout4snakes.com/wo4snakes/)) to create fake profiles and contents.
 
 ### Screenshots
 <img src="screenshots/login.png" height="375" alt="Login"/><img src="screenshots/content.png" height="375" alt="Content"/><img src="screenshots/search.png" height="375" alt="Search"/><img src="screenshots/profile.png" height="375" alt="Profile"/>
