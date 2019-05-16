@@ -1,6 +1,7 @@
 package com.ulj.slicky.kotlinfakesocial.db
 
 import com.ulj.slicky.kotlinfakesocial.BuildConfig
+import com.ulj.slicky.kotlinfakesocial.isAppiumTest
 import com.ulj.slicky.kotlinfakesocial.model.content.Content
 import com.ulj.slicky.kotlinfakesocial.model.person.Person
 import com.ulj.slicky.kotlinfakesocial.provider.Provider
@@ -115,7 +116,7 @@ object FakeDBHandler : DBHandler {
 
     @Throws(IOException::class)
     private fun findCandidates(): List<Person> {
-        return if (BuildConfig.BUILD_VERSION == "APPIUM") {
+        return if (isAppiumTest()) {
             findCandidatesProvider()
         } else {
             findCandidatesApi()
@@ -169,7 +170,7 @@ object FakeDBHandler : DBHandler {
 
     @Throws(IOException::class)
     private fun findContent(): String {
-        return if (BuildConfig.BUILD_VERSION == "APPIUM") {
+        return if (isAppiumTest()) {
             findContentProvider()
         } else {
             findContentApi()
@@ -192,7 +193,7 @@ object FakeDBHandler : DBHandler {
 
 
     private fun simulateWork() {
-        if (BuildConfig.BUILD_VERSION == "APPIUM") {
+        if (isAppiumTest()) {
             TimeUnit.SECONDS.sleep(1)
         }
     }
